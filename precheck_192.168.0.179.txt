@@ -1,0 +1,2493 @@
+show conf
+Using 402 out of 522232 bytes!
+!
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R3
+!
+ip cef
+no ip domain-lookup
+no ip icmp rate-limit unreachable
+ip tcp synwait 5
+no cdp log mismatch duplex
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
+line aux 0
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
+!
+!
+end
+
+R3#exit
+show ip int brief
+Interface              IP-Address      OK? Method Status                Protocol
+FastEthernet0/0        192.168.0.179   YES manual up                    up      
+FastEthernet1/0        unassigned      YES unset  administratively down down    
+R3#exit
+show tech
+
+------------------ show clock ------------------
+
+
+*01:31:07.723 UTC Thu Feb 2 2017
+
+------------------ show version ------------------
+
+
+Cisco IOS Software, 7200 Software (C7200-ADVIPSERVICESK9-M), Version 15.2(4)S5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Thu 20-Feb-14 06:51 by prod_rel_team
+
+ROM: ROMMON Emulation Microcode
+BOOTLDR: 7200 Software (C7200-ADVIPSERVICESK9-M), Version 15.2(4)S5, RELEASE SOFTWARE (fc1)
+
+R3 uptime is 1 hour, 48 minutes
+System returned to ROM by unknown reload cause - suspect boot_data[BOOT_COUNT] 0x0, BOOT_COUNT 0, BOOTDATA 19
+System image file is "tftp://255.255.255.255/unknown"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco 7206VXR (NPE400) processor (revision A) with 491520K/32768K bytes of memory.
+Processor board ID 4279256517
+R7000 CPU at 150MHz, Implementation 39, Rev 2.1, 256KB L2 Cache
+6 slot VXR midplane, Version 2.1
+
+Last reset from power-on
+
+PCI bus mb0_mb1 (Slots 0, 1, 3 and 5) has a capacity of 600 bandwidth points.
+Current configuration on bus mb0_mb1 has a total of 400 bandwidth points. 
+This configuration is within the PCI bus capacity and is supported. 
+
+PCI bus mb2 (Slots 2, 4, 6) has a capacity of 600 bandwidth points.
+Current configuration on bus mb2 has a total of 0 bandwidth points 
+This configuration is within the PCI bus capacity and is supported. 
+
+Please refer to the following document "Cisco 7200 Series Port Adaptor
+Hardware Configuration Guidelines" on Cisco.com <http://www.cisco.com>
+for c7200 bandwidth points oversubscription and usage guidelines.
+
+
+2 FastEthernet interfaces
+509K bytes of NVRAM.
+
+8192K bytes of Flash internal SIMM (Sector size 256K).
+Configuration register is 0x2102
+
+
+------------------ show running-config ------------------
+
+
+Building configuration...
+
+Current configuration : 898 bytes
+!
+! Last configuration change at 00:18:04 UTC Thu Feb 2 2017
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname R3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+no ipv6 cef
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.0.179 255.255.255.0
+ duplex full
+!
+interface FastEthernet1/0
+ no ip address
+ shutdown
+ duplex full
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ password <removed>
+ logging synchronous
+ login
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ password <removed>
+ login
+!
+!
+end
+
+
+------------------ show stacks ------------------
+
+
+Minimum process stacks:
+ Free/Size   Name
+ 4948/6000   CDP BLOB
+ 7892/9000   EEM ED RF
+ 7868/9000   EM ED GOLD
+10848/12000  MRIB IPv6 Init Process
+11008/12000  MRIB IPv4 Init Process
+ 3688/6000   EEM Shell Director
+19704/24000  Init
+58580/60000  EEM Auto Registration Proc
+ 4968/6000   SASL MAIN
+ 1896/3000   LIM WAVL
+11008/12000  cdp init process
+ 4752/6000   RADIUS INITCONFIG
+ 4808/6000   URPF stats
+ 1928/3000   Rom Random Update Process
+34596/36000  TCP Command
+18372/24000  Virtual Exec
+
+Interrupt level stacks:
+Level    Called Unused/Size  Name
+  1       15976   7928/9000  Network interfaces
+  2         751   8568/9000  DMA/Timer Interrupt
+  3           0   9000/9000  PA Management Int Handler
+  4      224246   8600/9000  Console Uart
+  5           0   9000/9000  OIR/Error Interrupt
+  7     1629517   8528/9000  NMI Interrupt Handler
+
+------------------ show interfaces ------------------
+
+
+FastEthernet0/0 is up, line protocol is up 
+  Hardware is DEC21140, address is ca08.1350.0000 (bia ca08.1350.0000)
+  Internet address is 192.168.0.179/24
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, 100BaseTX/FX
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 2/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 2000 bits/sec, 2 packets/sec
+  5 minute output rate 1000 bits/sec, 1 packets/sec
+     16244 packets input, 2368126 bytes
+     Received 8398 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog
+     0 input packets with dribble condition detected
+     14254 packets output, 4834570 bytes, 0 underruns
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+FastEthernet1/0 is administratively down, line protocol is down 
+  Hardware is DEC21140, address is ca08.1350.001c (bia ca08.1350.001c)
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, 100BaseTX/FX
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+
+------------------ show interfaces history ------------------
+
+
+
+------------------ show controllers ------------------
+
+
+Interface FastEthernet0/0
+Hardware is DEC21140
+ dec21140_ds=0x668E3FE8, registers=0x3C0C0000, ib=0xE188080
+ rx ring entries=128, tx ring entries=256, af setup failed=0
+ rxring=0x7E188180, rxr shadow=0x668E4598, rx_head=117, rx_tail=0
+ txring=0x7E1889C0, txr shadow=0x668E47CC, tx_head=181, tx_tail=183, tx_count=2
+ PHY link up
+ CSR0=0x29082, CSR3=0xE188180, CSR4=0xE1889C0, CSR5=0x360000
+ CSR6=0x20CA202, CSR7=0x1A261, CSR8=0x0, CSR9=0x54000
+ CSR11=0x0, CSR12=0x98, CSR15=0x0
+ TX state: running - reading buffer
+ RX state: running - waiting for rx packet
+ Far End Fault Indication (For FX Interface): OFF
+ DEC21140 PCI registers:
+  bus_no=0, device_no=6
+  CFID=0x00091011, CFCS=0x00000000, CFRV=0x02000011, CFLT=0x00000000
+  CBIO=0x00000000, CBMA=0x480C0000, CFIT=0x00000000, CFDA=0x00000000
+ MII registers:
+  Register 0x00:   2100  0004  0000  0000  0000  0000  0000  0000
+  Register 0x08:   0000  0000  0000  0000  0000  0000  0000  0000
+  Register 0x10:   0000  0000  0000  0000  0000  0000  0000  0000
+  Register 0x18:   0000  0000  0000  0000  0000  0000  0000  0000
+ Software MAC address filter(hash:length/addr/mask/hits):
+ need_af_check = 0 
+  0x00:  0  ffff.ffff.ffff  0000.0000.0000         0
+  0x13:  0  ca08.1350.0000  0000.0000.0000         0
+  0xC0:  0  0100.0ccc.cccc  0000.0000.0000         0
+ throttled=0, enabled=0, disabled=0
+ rx_fifo_overflow=0, rx_no_enp=0, rx_state=0
+ tx_underrun_err=0, tx_jabber_timeout=0, tx_carrier_loss=0
+ tx_no_carrier=0, tx_late_collision=0, tx_excess_coll=0
+ tx_collision_cnt=0, tx_deferred=0, fatal_tx_err=0, tbl_overflow=0
+ rx_pak_len_err = 0, filtered_pak_cnt = 0 
+ tx_limited=0(256)
+ HW addr filter: 0xE19CA40, ISL Disabled
+  Entry= 0:  Addr=0100.0CCC.CCCC
+  Entry= 1:  Addr=FFFF.FFFF.FFFF
+  Entry= 2:  Addr=FFFF.FFFF.FFFF
+  Entry= 3:  Addr=FFFF.FFFF.FFFF
+  Entry= 4:  Addr=FFFF.FFFF.FFFF
+  Entry= 5:  Addr=FFFF.FFFF.FFFF
+  Entry= 6:  Addr=FFFF.FFFF.FFFF
+  Entry= 7:  Addr=FFFF.FFFF.FFFF
+  Entry= 8:  Addr=FFFF.FFFF.FFFF
+  Entry= 9:  Addr=FFFF.FFFF.FFFF
+  Entry=10:  Addr=FFFF.FFFF.FFFF
+  Entry=11:  Addr=FFFF.FFFF.FFFF
+  Entry=12:  Addr=FFFF.FFFF.FFFF
+  Entry=13:  Addr=FFFF.FFFF.FFFF
+  Entry=14:  Addr=FFFF.FFFF.FFFF
+  Entry=15:  Addr=CA08.1350.0000
+
+Interface FastEthernet1/0
+Hardware is DEC21140
+ dec21140_ds=0x668EE79C, registers=0x3C800000, ib=0xE1C5040
+ rx ring entries=128, tx ring entries=256, af setup failed=0
+ rxring=0x7E1C5140, rxr shadow=0x668EECE8, rx_head=0, rx_tail=0
+ txring=0x7E1C5980, txr shadow=0x668EEF1C, tx_head=0, tx_tail=4, tx_count=4
+ PHY link up
+ CSR0=0x29082, CSR3=0xE1C5140, CSR4=0xE1C5980, CSR5=0xFC000000
+ CSR6=0x0, CSR7=0x0, CSR8=0x0, CSR9=0x54000
+ CSR11=0x0, CSR12=0x9, CSR15=0x0
+ TX state: stopped
+ RX state: stopped - RESET or STOP RECEIVE command
+ Far End Fault Indication (For FX Interface): OFF
+ DEC21140 PCI registers:
+  bus_no=5, device_no=0
+  CFID=0x00091011, CFCS=0x00000000, CFRV=0x02000011, CFLT=0x00000000
+  CBIO=0x00000000, CBMA=0x48800000, CFIT=0x00000000, CFDA=0x00000000
+ MII registers:
+  Register 0x00:   0400  0000  0000  0000  0000  0000  0000  0000
+  Register 0x08:   0000  0000  0000  0000  0000  0000  0000  0000
+  Register 0x10:   0000  0000  0000  0000  0000  0000  0000  0000
+  Register 0x18:   0000  0000  0000  0000  0000  0000  0000  0000
+ Software MAC address filter(hash:length/addr/mask/hits):
+ need_af_check = 0 
+  0x00:  0  ffff.ffff.ffff  0000.0000.0000         0
+  0x0F:  0  ca08.1350.001c  0000.0000.0000         0
+  0xC0:  0  0100.0ccc.cccc  0000.0000.0000         0
+ throttled=0, enabled=0, disabled=0
+ rx_fifo_overflow=0, rx_no_enp=0, rx_state=0
+ tx_underrun_err=0, tx_jabber_timeout=0, tx_carrier_loss=0
+ tx_no_carrier=0, tx_late_collision=0, tx_excess_coll=0
+ tx_collision_cnt=0, tx_deferred=0, fatal_tx_err=0, tbl_overflow=0
+ rx_pak_len_err = 0, filtered_pak_cnt = 0 
+ tx_limited=0(256)
+ HW addr filter: 0xE1D9A00, ISL Disabled
+  Entry= 0:  Addr=0100.0CCC.CCCC
+  Entry= 1:  Addr=FFFF.FFFF.FFFF
+  Entry= 2:  Addr=FFFF.FFFF.FFFF
+  Entry= 3:  Addr=FFFF.FFFF.FFFF
+  Entry= 4:  Addr=FFFF.FFFF.FFFF
+  Entry= 5:  Addr=FFFF.FFFF.FFFF
+  Entry= 6:  Addr=FFFF.FFFF.FFFF
+  Entry= 7:  Addr=FFFF.FFFF.FFFF
+  Entry= 8:  Addr=FFFF.FFFF.FFFF
+  Entry= 9:  Addr=FFFF.FFFF.FFFF
+  Entry=10:  Addr=FFFF.FFFF.FFFF
+  Entry=11:  Addr=FFFF.FFFF.FFFF
+  Entry=12:  Addr=FFFF.FFFF.FFFF
+  Entry=13:  Addr=FFFF.FFFF.FFFF
+  Entry=14:  Addr=FFFF.FFFF.FFFF
+  Entry=15:  Addr=CA08.1350.001C
+
+
+
+
+------------------ show user ------------------
+
+
+    Line       User       Host(s)              Idle       Location
+   0 con 0                idle                 01:13:00   
+*  2 vty 0                idle                 00:00:00 192.168.0.107
+
+  Interface    User               Mode         Idle     Peer Address
+
+
+------------------ show data-corruption ------------------
+
+
+No data inconsistency errors have been recorded.
+
+
+------------------ show environment last ------------------
+
+
+	Data not available
+
+------------------ show environment all ------------------
+
+
+Power Supplies:
+	Power Supply 1 is AC Power Supply. Unit is on.
+	Power Supply 2 is AC Power Supply. Unit is on.
+
+Temperature readings:
+	I/O Cont Inlet   measured at 22C/71F 
+	I/O Cont Outlet  measured at 22C/71F 
+	NPE Inlet        measured at 22C/71F 
+	NPE Outlet       measured at 22C/71F 
+
+Voltage readings:
+	+3.45 V       measured at +3.43 V 
+	+5.15 V       measured at +5.13 V 
+	+12.15 V      measured at +12.10 V 
+	-11.95 V      measured at -11.90 V 
+
+Envm stats saved 1 time(s) since reload
+
+------------------ show memory statistics ------------------
+
+
+                Head    Total(b)     Used(b)     Free(b)   Lowest(b)  Largest(b)
+Processor   6558E400   396826796    52921492   343905304   343205760   329717932
+      I/O    E000000    33554432     2435528    31118904    31090628    31090588
+Transient   7D000000    16777216       10156    16767060    16766416    16767060
+
+------------------ show process memory ------------------
+
+
+Processor Pool Total:  396826796 Used:   52920868 Free:  343905928
+      I/O Pool Total:   33554432 Used:    2435520 Free:   31118912
+Transient Pool Total:   16777216 Used:      10152 Free:   16767064
+
+ PID TTY  Allocated      Freed    Holding    Getbufs    Retbufs Process
+   0   0   86420056   37747404   46118560        344       4123 *Init*          
+   0   0      12052    7078844      12052          0          0 *Sched*         
+   0   0   41304036   37818564     710620        205        205 *Dead*          
+   0   0          0          0     394896          0          0 *MallocLite*    
+   1   0      65588          0      72852          0          0 Chunk Manager   
+   2   0        240        240       4264          0          0 Load Meter      
+   3   0    1902956      14852    1913204          7          7 Exec            
+   4   0          0          0       7264          0          0 RO Notify Timers
+   5   0       4444          0      11708          0          0 Check heaps     
+   6   0    7298640    7298640      74844         49          0 Pool Manager    
+   7   0          0          0       7264          0          0 DiscardQ Backgro
+   8   0        240        240       7264          0          0 Timers          
+   9   0          0          0       4264          0          0 WATCH_AFS       
+  10   0      54328      17684      43908        256        256 ARP Input       
+  11   0      33916        760      40420          2          2 ARP Background  
+  12   0        240        240       7264          0          0 ATM Idle Timer  
+  13   0          0          0       7264          0          0 ATM ASYNC PROC  
+  14   0          0          0       7264          0          0 AAA_SERVER_DEADT
+  15   0          0          0      13264          0          0 Policy Manager  
+  16   0      16272          0      23536          2          2 Entity MIB API  
+  17   0       2948        240       9972          0          0 PrstVbl         
+  18   0        240        240       7264          0          0 Serial Backgroun
+  19   0          0          0       4264          0          0 RMI RM Notify Wa
+  20   0        240        240       7264          0          0 DDR Timers      
+  21   0        240        240      10264          0          0 ATM AutoVC Perio
+  22   0        240        240       7264          0          0 ATM VC Auto Crea
+  23   0          0          0       7264          0          0 IPC Event Notifi
+  24   0          0          0       7264          0          0 IPC Mcast Pendin
+  25   0          0          0       7264          0          0 IPC Dynamic Cach
+  26   0          0          0       7264          0          0 IPC Service NonC
+  27   0          0          0       7264          0          0 IPC Zone Manager
+  28   0          0          0       7264          0          0 IPC Periodic Tim
+  29   0          0          0       7264          0          0 IPC Deferred Por
+  30   0          0          0       7264          0          0 IPC Process leve
+  31   0       2104          0       9368          0          0 IPC Seat Manager
+  32   0          0          0       7264          0          0 IPC Check Queue 
+  33   0          0          0       7264          0          0 IPC Seat RX Cont
+  34   0          0          0       7264          0          0 IPC Seat TX Cont
+  35   0          0          0       7264          0          0 IPC Keep Alive M
+  36   0          0          0       7264          0          0 IPC Loadometer  
+  37   0          0          0       7264          0          0 Compute SRP rate
+  38   0          0          0       7264          4          4 EnvMon          
+  39   0          0          0       7264          0          0 OIR Handler     
+  40   0          0          0      25264          0          0 Crash writer    
+  41   0        352          0       7616          0          0 Exception contro
+  42   0          0          0       7264          0          0 ALARM_TRIGGER_SC
+  43   0          0          0       7264          0          0 CEF MIB API     
+  44   0        240        240       7264          0          0 GraphIt         
+  45   0          0          0       7264          0          0 SERIAL A'detect 
+  46   0        240        240      13264          0          0 Dialer event    
+  47   0        240        240       7264          0          0 SMART           
+  48   0          0          0      13264          0          0 RFS server proce
+  49   0          0          0       7264          0          0 Critical Bkgnd  
+  50   0     141888        304     112476        641        641 Net Background  
+  51   0        304        304      13264          0          0 IDB Work        
+  52   0          0          0      13264        439        439 Logger          
+  53   0      25844       1284       7740          0          0 TTY Background  
+  54   0        236          0       7500          0          0 IF-MGR control p
+  55   0          0          0       7264          0          0 IF-MGR event pro
+  56   0          0          0       4264          0          0 Inode Table Dest
+  57   0          0          0       7264          0          0 Transport Port A
+  58   0        240        240      13264          0          0 INTR MGR PROCESS
+  59   0          0          0       7264          0          0 HC Counter Timer
+  60   0     170560     324260     174836          0          0 EEM ED ND       
+  61   0        240        240       7264          0          0 FEC_Link_event_h
+  62   0          0          0       7264          0          0 POS APS Event Pr
+  63   0          0          0       7264          0          0 SONET alarm time
+  64   0        240        240       7264          0          0 Hawkeye Backgrou
+  65   0          0          0       7264          0          0 CSP Timer       
+  66   0          0          0       7264          0          0 FPD Management P
+  67   0          0          0       7264          0          0 FPD Action Proce
+  68   0       4568       4568       7684          0          0 Flash MIB Update
+  69   0          0          0       4264          0          0 Flash Card Oir  
+  70   0        240        240       7264          0          0 AAA Server      
+  71   0          0          0       7264          0          0 AAA ACCT Proc   
+  72   0      49384          0      56648          0          0 ACCT Periodic Pr
+  73   0      10052          0      17316          0          0 AAA System Acct 
+  74   0          0          0       7292          0          0 Call Home Timer 
+  75   0        240        240       7264          0          0 AAA Dictionary R
+  76   0          0          0       7264          0          0 EAP Framework   
+  77   0          0          0       7264          0          0 EAP Test        
+  78   0          0          0      10264          0          0 HQF TUNNEL      
+  79   0        240        240       7264          0          0 IPAM/ODAP Events
+  80   0      49412          0      62676          0          0 IPAM Manager    
+  81   0        240        240      13264          0          0 IPAM Events     
+  82   0       3608          0      16872          0          0 IP ARP Adjacency
+  83   0      33056          0      40320          0          0 IP ARP Retry Age
+  84   0     186816       3336      18268      10729      10725 IP Input        
+  85   0          0          0       7264          0          0 ICMP event handl
+  86   0        240        240       7264          0          0 PIM register asy
+  87   0        240        240       7264          0          0 TurboACL        
+  88   0        240        240       7264          0          0 TurboACL chunk  
+  89   0          0          0       7264          0          0 IPv6 ping proces
+  90   0        240        240       7264          0          0 OCE punted Pkts 
+  91   0          0          0       7264          0          0 O-UNI Client Msg
+  92   0          0          0      13264          0          0 LSP Tunnel FRR  
+  93   0          0          0      13264          0          0 MPLS Auto-Tunnel
+  94   0      65588          0      90852          0          0 st_pw_oam       
+  95   0          0          0       7264          0          0 AAA EPD HANDLER 
+  96   0          0          0       7264          0          0 PM EPD API      
+  97   0          0          0      13264          0          0 DM Proc         
+  98   0        240        240       7264          0          0 PPP SIP         
+  99   0        240        240       7264          0          0 PPP Bind        
+ 100   0        240        240      13264          0          0 PPP IP Route    
+ 102   0        240        240      13264          0          0 SSM connection m
+ 103   0        480        240       7504          0          0 Spanning Tree   
+ 104   0          0          0       7264          0          0 VRRS            
+ 105   0        240          0      13504          0          0 CEF switching ba
+ 106   0        240          0       4504          0          0 ADJ NSF process 
+ 107   0        240        240      13264          0          0 ATM OAM Input   
+ 108   0        240        240      13264          0          0 ATM OAM TIMER   
+ 109   0        240        240       7264         32         32 MOP Protocols   
+ 110   0          0          0      13264          0          0 SSS Manager     
+ 111   0          0          0      13264          0          0 SSS Policy Manag
+ 112   0          0          0       7264          0          0 SSS Feature Mana
+ 113   0          0          0       7264          0          0 SSS Feature Time
+ 114   0          0          0      13264          0          0 SSS PM SHIM QOS 
+ 115   0          0          0       7264          0          0 Timer handler fo
+ 116   0          0          0       7264          0          0 Prepaid response
+ 117   0          0          0       7264          0          0 Timed Policy act
+ 118   0          0          0       7264          0          0 AAA response han
+ 119   0        240        240      13264          0          0 KRB5 AAA        
+ 120   0          0          0       7264          0          0 delayed evt hand
+ 121   0          0          0       7264          0          0 AC Switch       
+ 122   0          0          0       7264          0          0 ISG CMD HANDLER 
+ 123   0          0          0       7264          0          0 IP Lite session 
+ 124   0       9396        240      16420          0          0 IP PORTBUNDLE   
+ 125   0        240        240      13264          0          0 IP Static Sessio
+ 126   0          0          0       7264          0          0 RADIUS Proxy    
+ 127   0          0          0       7264          0          0 FRR Background P
+ 128   0        240         84      13504          0          0 CEF background p
+ 129   0        224          0      13488          0          0 fib_fib_bfd_sb e
+ 130   0          0          0      10264          0          0 IP IRDP         
+ 131   0          0          0       7332          0          0 SNMP Timers     
+ 132   0          0          0      13264          0          0 Routing Topology
+ 133   0       7144          0      20408          0          0 IP RIB Update   
+ 134   0       1204        672      10796          0          0 IP Background   
+ 135   0      76236        544      85956          0          0 IP Connected Rou
+ 136   0     990096     249236     445512        740        740 CDP Protocol    
+ 137   2     751316     745232      30912         91         82 Virtual Exec    
+ 138   0          0          0       7264          0          0 IP Traceroute   
+ 139   0          0          0       7264          0          0 Socket Timers   
+ 140   0        544          0       7808          0          0 Service Routing 
+ 141   0      14800       5072      16992          0          0 SR CapMan Proces
+ 142   0        240        372       7264          0          0 Flow Exporter Ti
+ 143   0          0     130104      13264        224        224 TCP Timer       
+ 144   0    4208144          0      13264          0          0 TCP Protocols   
+ 145   0        944          0      11208          0          0 HTTP CORE       
+ 146   0        224          0      10488          0          0 Tunnel FIB      
+ 147   0          0          0       7264          0          0 HQF Output Shape
+ 148   0          0          0       7264          0          0 HQF Input Shaper
+ 149   0      15784       2460      26588          0          0 CEF: IPv4 proces
+ 150   0        240          0       7504          0          0 ADJ background  
+ 151   0        240          0      13504          0          0 Collection proce
+ 152   0          0          0       7128          0          0 Inter Chassis Pr
+ 154   0        240          0      13504          0          0 MFIB Master back
+ 155   0        480        240      10504          0          0 Multicast Offloa
+ 156   0        480        240      10504          0          0 MVPN mgr Process
+ 157   0        240        240      10264          0          0 static          
+ 158   0          0          0      10264          0          0 IPv6 RIB Cleanup
+ 159   0          0          0      10264          0          0 IPv6 RIB Event H
+ 160   0       3256       1536      10520          0          0 VPWS Thread     
+ 161   0        500        324       7440          0          0 LFDp Input Proc 
+ 162   0      66000      66000       7264          0          0 QoS stats proces
+ 163   0      19496        240      26520          0          0 SCTP Main Proces
+ 164   0        240        240       7264          0          0 PPP Compress Inp
+ 165   0        240        240       7264          0          0 PPP Compress Res
+ 166   0        224          0      13488          0          0 ADJ resolve proc
+ 167   0        944          0      62208          0          0 COPS            
+ 168   0        240        240       7264          0          0 Dialer Forwarder
+ 169   0          0          0       7264          0          0 RARP Input      
+ 170   0        240        240       7264          0          0 PPP NBF         
+ 171   0        240          0       4504          0          0 PfR BR Learn    
+ 172   0          0          0       7264          0          0 PAD InCall      
+ 173   0        240        240      13264          0          0 X.25 Background 
+ 174   0          0          0       7264          0          0 X.25 Encaps Mana
+ 175   0        240        240       7264          0          0 RBSCP Background
+ 176   0          0          0      13264          0          0 VPDN call manage
+ 177   0          0          0       7264          0          0 XC RIB MGR      
+ 178   0          0          0       7264          0          0 ac_atm_state_eve
+ 179   0          0          0       7264          0          0 ac_atm_mraps_hsp
+ 180   0        240        240       4264          0          0 L2X Switching Ev
+ 181   0        240        240      13264          0          0 IP Inband Sessio
+ 182   0      66740          0      74004          0          0 DHCP SIP        
+ 183   0        240        240      13264          0          0 IP SIP Process  
+ 184   0       6852      14012      11784          0          0 PMIPV6 Thread   
+ 185   0        240        240       7264          0          0 AAA Cached Serve
+ 186   0          0          0       7264          0          0 EM Background Pr
+ 187   0          0          0       7264          0          0 IDMGR CORE      
+ 188   0          0          0       7264          0          0 Key chain liveke
+ 189   0        240        240       7264          0          0 LOCAL AAA       
+ 190   0          0          0      13264          0          0 MPLS Auto Mesh P
+ 192   0        240        240       7264          0          0 ENABLE AAA      
+ 193   0        240        240       7264          0          0 LINE AAA        
+ 194   0      66920        240       8116          0          0 TPLUS           
+ 195   0      67172      57860      16576          3          3 NIST rng proc   
+ 196   0      49624        240      56648          0          0 Timer Library   
+ 197   0        240        240       7264          0          0 Crypto Support  
+ 198   0          0          0       7264          0          0 IPSECv6 PS Proc 
+ 199   0     440508     439108       8664          0          0 crypto engine pr
+ 200   0     227876     191468      49748          1          1 Crypto CA       
+ 201   0          0          0      13264          0          0 Crypto PKI-CRL  
+ 202   0          0          0      13264          0          0 encrypt proc    
+ 203   0          0       4040       7264          0          0 crypto sw pk pro
+ 204   0          0          0      10264          0          0 QOS PERUSER     
+ 205   0        240        240       7264          0          0 GDOI GM Process 
+ 206   0          0          0       7264          0          0 UNICAST REKEY   
+ 207   0          0          0       7264          0          0 UNICAST REKEY AC
+ 208   0        240        520       7264          0          0 CRYPTO MAP FREE 
+ 209   0          0          0      13264          0          0 Crypto INT      
+ 210   0        240        240      13264          0          0 Crypto IKE Dispa
+ 211   0      10496        240      23520          1          1 Crypto IKMP     
+ 212   0          0          0      10264          0          0 IPSEC manual key
+ 213   0     271152       4416      16408          1          1 IPSEC key engine
+ 214   0          0          0      25264          0          0 Crypto ACL      
+ 215   0          0          0       7264          0          0 Crypto PAS Proc 
+ 216   0          0          0      13264          0          0 IPSec background
+ 217   0     123612         76     136800       4065       4065 Crypto IKEv2    
+ 218   0          0          0       7264          0          0 IKEv2 AAA handle
+ 219   0        240      41748       7264          0          0 AAA SEND STOP EV
+ 220   0          0          0      13264          0          0 Test AAA Client 
+ 221   0     363904       5052     369116        220        188 EEM ED Syslog   
+ 222   0     270360       5052     275572          2          2 EEM ED Generic  
+ 223   0      77296       4988      16816          0          0 EEM ED Track    
+ 224   0      11620       4988      16896          0          0 EEM ED Routing  
+ 225   0      16912       4988      22188          0          0 EEM ED Resource 
+ 227   0          0          0       7264          0          0 Syslog Traps    
+ 228   0        240        240       7264          0          0 RMON Recycle Pro
+ 229   0        240        240       7264          0          0 RMON Deferred Se
+ 231   0          0          0       7264          0          0 cerf_daemon_proc
+ 232   0        240        240      13264          0          0 ISG MIB jobs Man
+ 233   0          0          0      13264          0          0 IKEv2 FlexVPN Pr
+ 234   0    1261816      18060    1250956          0          0 EEM Server      
+ 235   0      93572      38108      81932          0          0 Call Home proces
+ 236   0      13048       1208      22104          0          0 EEM Policy Direc
+ 238   0      11560       4988      16836          0          0 EEM ED CLI      
+ 239   0      11524       4988      16800          0          0 EEM ED Counter  
+ 240   0      12064       5092      17172          0          0 EEM ED Interface
+ 241   0      11516       4988      16792          0          0 EEM ED IOSWD    
+ 242   0      11536       5008      16792          0          0 EEM ED None     
+ 243   0      11864       5156      17140          0          0 EEM ED OIR      
+ 245   0      11620       5028      16856          0          0 EEM ED SNMP     
+ 246   0      11516       4988      16792          0          0 EEM ED SNMP Obje
+ 247   0      11672       4988      16948          0          0 EEM ED SNMP Noti
+ 248   0      11684       4988      16960          0          0 EEM ED Timer    
+ 249   0      11580       5052      16792          0          0 EEM ED Test     
+ 250   0      11516       4988      16792          0          0 EEM ED Config   
+ 251   0      11516       4988      16792          0          0 EEM ED Env      
+ 253   0      16680       4988      21956          0          0 EEM ED Nf       
+ 254   0      11516       4988      16792          0          0 EEM ED Ipsla    
+ 255   0      54632      54632      13264        226        226 Syslog          
+ 256   0      11856       5156      17132          0          0 EEM ED RPC      
+ 257   0        316          0       7580          0          0 RMON Packets    
+ 258   0          0          0       7264          0          0 IP SLAs Ethernet
+ 259   0          0          0       7264       1177       1177 Net Input       
+ 260   0        240        240       7264          0          0 Compute load avg
+ 261   0       1836          0       9100          0          0 Per-minute Jobs 
+ 262   0          0          0      10264          0          0 Per-Second Jobs 
+ 263   0     116864        240     129888          0          0 MRIB Process    
+ 264   0      11252        480      18036          0          0 EEM Helper Threa
+                                 55358908 Total
+
+------------------ show process cpu ------------------
+
+
+CPU utilization for five seconds: 4%/68%; one minute: 2%; five minutes: 2%
+ PID Runtime(ms)     Invoked      uSecs   5Sec   1Min   5Min TTY Process 
+   1           4           2       2000  0.00%  0.00%  0.00%   0 Chunk Manager    
+   2        4208        1302       3231  0.00%  0.04%  0.06%   0 Load Meter       
+   3         408         411        992  0.00%  0.00%  0.00%   0 Exec             
+   4           0           1          0  0.00%  0.00%  0.00%   0 RO Notify Timers 
+   5        8596        1115       7709  0.00%  0.11%  0.11%   0 Check heaps      
+   6          60         109        550  0.00%  0.00%  0.00%   0 Pool Manager     
+   7           0           1          0  0.00%  0.00%  0.00%   0 DiscardQ Backgro 
+   8           0           2          0  0.00%  0.00%  0.00%   0 Timers           
+   9          92        1213         75  0.00%  0.00%  0.00%   0 WATCH_AFS        
+  10         296         264       1121  0.00%  0.00%  0.00%   0 ARP Input        
+  11         188        6785         27  0.00%  0.00%  0.00%   0 ARP Background   
+  12           4           2       2000  0.00%  0.00%  0.00%   0 ATM Idle Timer   
+  13           0           1          0  0.00%  0.00%  0.00%   0 ATM ASYNC PROC   
+  14           0           1          0  0.00%  0.00%  0.00%   0 AAA_SERVER_DEADT 
+  15           0           1          0  0.00%  0.00%  0.00%   0 Policy Manager   
+  16           4           4       1000  0.00%  0.00%  0.00%   0 Entity MIB API   
+  17          76           3      25333  0.00%  0.00%  0.00%   0 PrstVbl          
+  18           0           2          0  0.00%  0.00%  0.00%   0 Serial Backgroun 
+  19           0           1          0  0.00%  0.00%  0.00%   0 RMI RM Notify Wa 
+  20           0           2          0  0.00%  0.00%  0.00%   0 DDR Timers       
+  21           4           2       2000  0.00%  0.00%  0.00%   0 ATM AutoVC Perio 
+  22           0           2          0  0.00%  0.00%  0.00%   0 ATM VC Auto Crea 
+  23           8        1302          6  0.00%  0.00%  0.00%   0 IPC Event Notifi 
+  24          64        6348         10  0.00%  0.00%  0.00%   0 IPC Mcast Pendin 
+  25           4         109         36  0.00%  0.00%  0.00%   0 IPC Dynamic Cach 
+  26           4        1302          3  0.00%  0.00%  0.00%   0 IPC Service NonC 
+  27           0           1          0  0.00%  0.00%  0.00%   0 IPC Zone Manager 
+  28          44        6348          6  0.00%  0.00%  0.00%   0 IPC Periodic Tim 
+  29          68        6348         10  0.00%  0.00%  0.00%   0 IPC Deferred Por 
+  30           0           1          0  0.00%  0.00%  0.00%   0 IPC Process leve 
+  31           0           1          0  0.00%  0.00%  0.00%   0 IPC Seat Manager 
+  32           0         372          0  0.00%  0.00%  0.00%   0 IPC Check Queue  
+  33           0           1          0  0.00%  0.00%  0.00%   0 IPC Seat RX Cont 
+  34           0           1          0  0.00%  0.00%  0.00%   0 IPC Seat TX Cont 
+  35           4         651          6  0.00%  0.00%  0.00%   0 IPC Keep Alive M 
+  36           8        1302          6  0.00%  0.00%  0.00%   0 IPC Loadometer   
+  37           0         651          0  0.00%  0.00%  0.00%   0 Compute SRP rate 
+  38         244        6501         37  0.00%  0.00%  0.00%   0 EnvMon           
+  39           0           1          0  0.00%  0.00%  0.00%   0 OIR Handler      
+  40           0           1          0  0.00%  0.00%  0.00%   0 Crash writer     
+  41           0           1          0  0.00%  0.00%  0.00%   0 Exception contro 
+  42         244        1277        191  0.00%  0.00%  0.00%   0 ALARM_TRIGGER_SC 
+  43           0           1          0  0.00%  0.00%  0.00%   0 CEF MIB API      
+  44          48        6506          7  0.00%  0.00%  0.00%   0 GraphIt          
+  45           0           1          0  0.00%  0.00%  0.00%   0 SERIAL A'detect  
+  46           0           2          0  0.00%  0.00%  0.00%   0 Dialer event     
+  47           0           2          0  0.00%  0.00%  0.00%   0 SMART            
+  48           0           1          0  0.00%  0.00%  0.00%   0 RFS server proce 
+  49           0           1          0  0.00%  0.00%  0.00%   0 Critical Bkgnd   
+  50         504        1644        306  0.00%  0.03%  0.02%   0 Net Background   
+  51           0           2          0  0.00%  0.00%  0.00%   0 IDB Work         
+  52         156         426        366  0.00%  0.00%  0.00%   0 Logger           
+  53         808        6496        124  0.00%  0.01%  0.00%   0 TTY Background   
+  54           0           2          0  0.00%  0.00%  0.00%   0 IF-MGR control p 
+  55           0           4          0  0.00%  0.00%  0.00%   0 IF-MGR event pro 
+  56           0           1          0  0.00%  0.00%  0.00%   0 Inode Table Dest 
+  57           0           1          0  0.00%  0.00%  0.00%   0 Transport Port A 
+  58           0           2          0  0.00%  0.00%  0.00%   0 INTR MGR PROCESS 
+  59        2076         652       3184  0.00%  0.04%  0.02%   0 HC Counter Timer 
+  60         276         218       1266  0.00%  0.00%  0.00%   0 EEM ED ND        
+  61           0           2          0  0.00%  0.00%  0.00%   0 FEC_Link_event_h 
+  62           0           1          0  0.00%  0.00%  0.00%   0 POS APS Event Pr 
+  63           0           1          0  0.00%  0.00%  0.00%   0 SONET alarm time 
+  64           0           2          0  0.00%  0.00%  0.00%   0 Hawkeye Backgrou 
+  65           0           1          0  0.00%  0.00%  0.00%   0 CSP Timer        
+  66           0           1          0  0.00%  0.00%  0.00%   0 FPD Management P 
+  67           0           1          0  0.00%  0.00%  0.00%   0 FPD Action Proce 
+  68           8           2       4000  0.00%  0.00%  0.00%   0 Flash MIB Update 
+  69           0           1          0  0.00%  0.00%  0.00%   0 Flash Card Oir   
+  70           0           2          0  0.00%  0.00%  0.00%   0 AAA Server       
+  71           0           1          0  0.00%  0.00%  0.00%   0 AAA ACCT Proc    
+  72           0           1          0  0.00%  0.00%  0.00%   0 ACCT Periodic Pr 
+  73           4           1       4000  0.00%  0.00%  0.00%   0 AAA System Acct  
+  74           0         109          0  0.00%  0.00%  0.00%   0 Call Home Timer  
+  75           4           2       2000  0.00%  0.00%  0.00%   0 AAA Dictionary R 
+  76           0           1          0  0.00%  0.00%  0.00%   0 EAP Framework    
+  77           0           1          0  0.00%  0.00%  0.00%   0 EAP Test         
+  78           0           1          0  0.00%  0.00%  0.00%   0 HQF TUNNEL       
+  79           0           2          0  0.00%  0.00%  0.00%   0 IPAM/ODAP Events 
+  80        3136      201356         15  0.31%  0.16%  0.16%   0 IPAM Manager     
+  81           0           2          0  0.00%  0.00%  0.00%   0 IPAM Events      
+  82          12           2       6000  0.00%  0.00%  0.00%   0 IP ARP Adjacency 
+  83        3136      201353         15  0.07%  0.13%  0.14%   0 IP ARP Retry Age 
+  84        6604        4952       1333  0.39%  0.07%  0.05%   0 IP Input         
+  85           0           1          0  0.00%  0.00%  0.00%   0 ICMP event handl 
+  86           0           3          0  0.00%  0.00%  0.00%   0 PIM register asy 
+  87           4           4       1000  0.00%  0.00%  0.00%   0 TurboACL         
+  88           0           2          0  0.00%  0.00%  0.00%   0 TurboACL chunk   
+  89           0           1          0  0.00%  0.00%  0.00%   0 IPv6 ping proces 
+  90           0           2          0  0.00%  0.00%  0.00%   0 OCE punted Pkts  
+  91           0           1          0  0.00%  0.00%  0.00%   0 O-UNI Client Msg 
+  92           0           1          0  0.00%  0.00%  0.00%   0 LSP Tunnel FRR   
+  93           0           1          0  0.00%  0.00%  0.00%   0 MPLS Auto-Tunnel 
+  94           0           1          0  0.00%  0.00%  0.00%   0 st_pw_oam        
+  95           0           1          0  0.00%  0.00%  0.00%   0 AAA EPD HANDLER  
+  96           0           1          0  0.00%  0.00%  0.00%   0 PM EPD API       
+  97           0           1          0  0.00%  0.00%  0.00%   0 DM Proc          
+  98           0           2          0  0.00%  0.00%  0.00%   0 PPP SIP          
+  99           0           2          0  0.00%  0.00%  0.00%   0 PPP Bind         
+ 100           0           2          0  0.00%  0.00%  0.00%   0 PPP IP Route     
+ 102           0           2          0  0.00%  0.00%  0.00%   0 SSM connection m 
+ 103           4           2       2000  0.00%  0.00%  0.00%   0 Spanning Tree    
+ 104           0           1          0  0.00%  0.00%  0.00%   0 VRRS             
+ 105           0           2          0  0.00%  0.00%  0.00%   0 CEF switching ba 
+ 106           0           1          0  0.00%  0.00%  0.00%   0 ADJ NSF process  
+ 107           0           2          0  0.00%  0.00%  0.00%   0 ATM OAM Input    
+ 108           0           2          0  0.00%  0.00%  0.00%   0 ATM OAM TIMER    
+ 109           0          35          0  0.00%  0.00%  0.00%   0 MOP Protocols    
+ 110           0           1          0  0.00%  0.00%  0.00%   0 SSS Manager      
+ 111           0           1          0  0.00%  0.00%  0.00%   0 SSS Policy Manag 
+ 112           0           1          0  0.00%  0.00%  0.00%   0 SSS Feature Mana 
+ 113         736       25378         29  0.00%  0.00%  0.00%   0 SSS Feature Time 
+ 114           0           1          0  0.00%  0.00%  0.00%   0 SSS PM SHIM QOS  
+ 115           0           1          0  0.00%  0.00%  0.00%   0 Timer handler fo 
+ 116           0           1          0  0.00%  0.00%  0.00%   0 Prepaid response 
+ 117           0           1          0  0.00%  0.00%  0.00%   0 Timed Policy act 
+ 118           0           1          0  0.00%  0.00%  0.00%   0 AAA response han 
+ 119           4           2       2000  0.00%  0.00%  0.00%   0 KRB5 AAA         
+ 120           0           1          0  0.00%  0.00%  0.00%   0 delayed evt hand 
+ 121           0           1          0  0.00%  0.00%  0.00%   0 AC Switch        
+ 122           0           1          0  0.00%  0.00%  0.00%   0 ISG CMD HANDLER  
+ 123          12        1589          7  0.00%  0.00%  0.00%   0 IP Lite session  
+ 124           4           2       2000  0.00%  0.00%  0.00%   0 IP PORTBUNDLE    
+ 125          16        1590         10  0.00%  0.00%  0.00%   0 IP Static Sessio 
+ 126           0           1          0  0.00%  0.00%  0.00%   0 RADIUS Proxy     
+ 127           0         109          0  0.00%  0.00%  0.00%   0 FRR Background P 
+ 128          76         155        490  0.00%  0.00%  0.00%   0 CEF background p 
+ 129           0           1          0  0.00%  0.00%  0.00%   0 fib_fib_bfd_sb e 
+ 130           0           1          0  0.00%  0.00%  0.00%   0 IP IRDP          
+ 131           0           1          0  0.00%  0.00%  0.00%   0 SNMP Timers      
+ 132           0           2          0  0.00%  0.00%  0.00%   0 Routing Topology 
+ 133          20           3       6666  0.00%  0.00%  0.00%   0 IP RIB Update    
+ 134           8         112         71  0.00%  0.00%  0.00%   0 IP Background    
+ 135          32           9       3555  0.00%  0.00%  0.00%   0 IP Connected Rou 
+ 136         808         911        886  0.00%  0.00%  0.00%   0 CDP Protocol     
+ 137        1140          71      16056  0.00%  0.00%  0.00%   2 Virtual Exec     
+ 138           0           1          0  0.00%  0.00%  0.00%   0 IP Traceroute    
+ 139           0           1          0  0.00%  0.00%  0.00%   0 Socket Timers    
+ 140           4           3       1333  0.00%  0.00%  0.00%   0 Service Routing  
+ 141          12           6       2000  0.00%  0.00%  0.00%   0 SR CapMan Proces 
+ 142           4           8        500  0.00%  0.00%  0.00%   0 Flow Exporter Ti 
+ 143         184         739        248  0.07%  0.00%  0.00%   0 TCP Timer        
+ 144         200         222        900  0.15%  0.01%  0.00%   0 TCP Protocols    
+ 145           4          22        181  0.00%  0.00%  0.00%   0 HTTP CORE        
+ 146           0           1          0  0.00%  0.00%  0.00%   0 Tunnel FIB       
+ 147           0           2          0  0.00%  0.00%  0.00%   0 HQF Output Shape 
+ 148           0           2          0  0.00%  0.00%  0.00%   0 HQF Input Shaper 
+ 149        3812        9678        393  0.07%  0.02%  0.02%   0 CEF: IPv4 proces 
+ 150           0           2          0  0.00%  0.00%  0.00%   0 ADJ background   
+ 151           4           3       1333  0.00%  0.00%  0.00%   0 Collection proce 
+ 152           0           1          0  0.00%  0.00%  0.00%   0 Inter Chassis Pr 
+ 154           0           3          0  0.00%  0.00%  0.00%   0 MFIB Master back 
+ 155           0           2          0  0.00%  0.00%  0.00%   0 Multicast Offloa 
+ 156           0           4          0  0.00%  0.00%  0.00%   0 MVPN mgr Process 
+ 157           4           2       2000  0.00%  0.00%  0.00%   0 static           
+ 158           0           1          0  0.00%  0.00%  0.00%   0 IPv6 RIB Cleanup 
+ 159           0           1          0  0.00%  0.00%  0.00%   0 IPv6 RIB Event H 
+ 160          12           2       6000  0.00%  0.00%  0.00%   0 VPWS Thread      
+ 161           0           2          0  0.00%  0.00%  0.00%   0 LFDp Input Proc  
+ 162           8         647         12  0.00%  0.00%  0.00%   0 QoS stats proces 
+ 163          20           2      10000  0.00%  0.00%  0.00%   0 SCTP Main Proces 
+ 164           0           2          0  0.00%  0.00%  0.00%   0 PPP Compress Inp 
+ 165           0           2          0  0.00%  0.00%  0.00%   0 PPP Compress Res 
+ 166           0           2          0  0.00%  0.00%  0.00%   0 ADJ resolve proc 
+ 167           0           1          0  0.00%  0.00%  0.00%   0 COPS             
+ 168           0           2          0  0.00%  0.00%  0.00%   0 Dialer Forwarder 
+ 169           0           1          0  0.00%  0.00%  0.00%   0 RARP Input       
+ 170           0           2          0  0.00%  0.00%  0.00%   0 PPP NBF          
+ 171        1492        6486        230  0.00%  0.00%  0.00%   0 PfR BR Learn     
+ 172           0           1          0  0.00%  0.00%  0.00%   0 PAD InCall       
+ 173           0           2          0  0.00%  0.00%  0.00%   0 X.25 Background  
+ 174           0           1          0  0.00%  0.00%  0.00%   0 X.25 Encaps Mana 
+ 175         608       64763          9  0.07%  0.07%  0.07%   0 RBSCP Background 
+ 176           0           1          0  0.00%  0.00%  0.00%   0 VPDN call manage 
+ 177           0           1          0  0.00%  0.00%  0.00%   0 XC RIB MGR       
+ 178           0           1          0  0.00%  0.00%  0.00%   0 ac_atm_state_eve 
+ 179           0           1          0  0.00%  0.00%  0.00%   0 ac_atm_mraps_hsp 
+ 180           0           2          0  0.00%  0.00%  0.00%   0 L2X Switching Ev 
+ 181           0           2          0  0.00%  0.00%  0.00%   0 IP Inband Sessio 
+ 182           0           1          0  0.00%  0.00%  0.00%   0 DHCP SIP         
+ 183         168        1590        105  0.00%  0.00%  0.00%   0 IP SIP Process   
+ 184         160         133       1203  0.00%  0.00%  0.00%   0 PMIPV6 Thread    
+ 185           0           2          0  0.00%  0.00%  0.00%   0 AAA Cached Serve 
+ 186           0           1          0  0.00%  0.00%  0.00%   0 EM Background Pr 
+ 187           0           1          0  0.00%  0.00%  0.00%   0 IDMGR CORE       
+ 188           0           1          0  0.00%  0.00%  0.00%   0 Key chain liveke 
+ 189           0           2          0  0.00%  0.00%  0.00%   0 LOCAL AAA        
+ 190           0           2          0  0.00%  0.00%  0.00%   0 MPLS Auto Mesh P 
+ 192           0           2          0  0.00%  0.00%  0.00%   0 ENABLE AAA       
+ 193           4           2       2000  0.00%  0.00%  0.00%   0 LINE AAA         
+ 194           0           2          0  0.00%  0.00%  0.00%   0 TPLUS            
+ 195          12           2       6000  0.00%  0.00%  0.00%   0 NIST rng proc    
+ 196         260       12682         20  0.00%  0.00%  0.00%   0 Timer Library    
+ 197           4           2       2000  0.00%  0.00%  0.00%   0 Crypto Support   
+ 198           0           1          0  0.00%  0.00%  0.00%   0 IPSECv6 PS Proc  
+ 199         280          25      11200  0.00%  0.00%  0.00%   0 crypto engine pr 
+ 200         156           4      39000  0.00%  0.00%  0.00%   0 Crypto CA        
+ 201           0           1          0  0.00%  0.00%  0.00%   0 Crypto PKI-CRL   
+ 202           0           1          0  0.00%  0.00%  0.00%   0 encrypt proc     
+ 203           4           2       2000  0.00%  0.00%  0.00%   0 crypto sw pk pro 
+ 204           0           1          0  0.00%  0.00%  0.00%   0 QOS PERUSER      
+ 205           0           2          0  0.00%  0.00%  0.00%   0 GDOI GM Process  
+ 206           0           1          0  0.00%  0.00%  0.00%   0 UNICAST REKEY    
+ 207           0           1          0  0.00%  0.00%  0.00%   0 UNICAST REKEY AC 
+ 208           0           3          0  0.00%  0.00%  0.00%   0 CRYPTO MAP FREE  
+ 209           0           1          0  0.00%  0.00%  0.00%   0 Crypto INT       
+ 210           0           2          0  0.00%  0.00%  0.00%   0 Crypto IKE Dispa 
+ 211           8           3       2666  0.00%  0.00%  0.00%   0 Crypto IKMP      
+ 212           0           1          0  0.00%  0.00%  0.00%   0 IPSEC manual key 
+ 213         100         327        305  0.00%  0.00%  0.00%   0 IPSEC key engine 
+ 214           0           1          0  0.00%  0.00%  0.00%   0 Crypto ACL       
+ 215           0           1          0  0.00%  0.00%  0.00%   0 Crypto PAS Proc  
+ 216           0           1          0  0.00%  0.00%  0.00%   0 IPSec background 
+ 217        1284        6503        197  0.00%  0.00%  0.00%   0 Crypto IKEv2     
+ 218           0           1          0  0.00%  0.00%  0.00%   0 IKEv2 AAA handle 
+ 219          40         113        353  0.00%  0.00%  0.00%   0 AAA SEND STOP EV 
+ 220           0           1          0  0.00%  0.00%  0.00%   0 Test AAA Client  
+ 221         252         219       1150  0.00%  0.00%  0.00%   0 EEM ED Syslog    
+ 222          12           5       2400  0.00%  0.00%  0.00%   0 EEM ED Generic   
+ 223           0           4          0  0.00%  0.00%  0.00%   0 EEM ED Track     
+ 224           4           4       1000  0.00%  0.00%  0.00%   0 EEM ED Routing   
+ 225           4           4       1000  0.00%  0.00%  0.00%   0 EEM ED Resource  
+ 227           0           1          0  0.00%  0.00%  0.00%   0 Syslog Traps     
+ 228           4         652          6  0.00%  0.00%  0.00%   0 RMON Recycle Pro 
+ 229           0           2          0  0.00%  0.00%  0.00%   0 RMON Deferred Se 
+ 231        1148        6483        177  0.00%  0.00%  0.00%   0 cerf_daemon_proc 
+ 232        5196      403065         12  0.23%  0.28%  0.31%   0 ISG MIB jobs Man 
+ 233           0           1          0  0.00%  0.00%  0.00%   0 IKEv2 FlexVPN Pr 
+ 234          76          74       1027  0.00%  0.00%  0.00%   0 EEM Server       
+ 235          52           3      17333  0.00%  0.00%  0.00%   0 Call Home proces 
+ 236           8           3       2666  0.00%  0.00%  0.00%   0 EEM Policy Direc 
+ 238           0           4          0  0.00%  0.00%  0.00%   0 EEM ED CLI       
+ 239           4           4       1000  0.00%  0.00%  0.00%   0 EEM ED Counter   
+ 240           4           4       1000  0.00%  0.00%  0.00%   0 EEM ED Interface 
+ 241           0           4          0  0.00%  0.00%  0.00%   0 EEM ED IOSWD     
+ 242          12           4       3000  0.00%  0.00%  0.00%   0 EEM ED None      
+ 243           0           4          0  0.00%  0.00%  0.00%   0 EEM ED OIR       
+ 245           8           4       2000  0.00%  0.00%  0.00%   0 EEM ED SNMP      
+ 246           0           4          0  0.00%  0.00%  0.00%   0 EEM ED SNMP Obje 
+ 247           4           4       1000  0.00%  0.00%  0.00%   0 EEM ED SNMP Noti 
+ 248          16         113        141  0.00%  0.00%  0.00%   0 EEM ED Timer     
+ 249           0           4          0  0.00%  0.00%  0.00%   0 EEM ED Test      
+ 250           0           4          0  0.00%  0.00%  0.00%   0 EEM ED Config    
+ 251           0           4          0  0.00%  0.00%  0.00%   0 EEM ED Env       
+ 253           4           4       1000  0.00%  0.00%  0.00%   0 EEM ED Nf        
+ 254           0           4          0  0.00%  0.00%  0.00%   0 EEM ED Ipsla     
+ 255         312         214       1457  0.00%  0.00%  0.00%   0 Syslog           
+ 256           4           4       1000  0.00%  0.00%  0.00%   0 EEM ED RPC       
+ 257           0           1          0  0.00%  0.00%  0.00%   0 RMON Packets     
+ 258           0           1          0  0.00%  0.00%  0.00%   0 IP SLAs Ethernet 
+ 259         196        1094        179  0.00%  0.00%  0.00%   0 Net Input        
+ 260        4172        1303       3201  0.07%  0.07%  0.07%   0 Compute load avg 
+ 261         596         217       2746  0.00%  0.00%  0.00%   0 Per-minute Jobs  
+ 262        1628        6508        250  0.15%  0.17%  0.16%   0 Per-Second Jobs  
+ 263           4           2       2000  0.00%  0.00%  0.00%   0 MRIB Process     
+ 264          56          75        746  0.00%  0.00%  0.00%   0 EEM Helper Threa
+
+------------------ show process cpu history ------------------
+
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+      444441111111111111111111111111222221111111111111111111111111
+  100                                                           
+   90                                                           
+   80                                                           
+   70                                                           
+   60                                                           
+   50                                                           
+   40                                                           
+   30                                                           
+   20                                                           
+   10                                                           
+     0....5....1....1....2....2....3....3....4....4....5....5....6
+               0    5    0    5    0    5    0    5    0    5    0
+               CPU% per second (last 60 seconds)
+
+                                                                  
+                                                                  
+                                                                  
+       3     442432 4   4  3 3 4     3    5      5       1       3
+      272222233553430222622927271222202222252222202222322922222121
+  100                                                           
+   90                                                           
+   80                                                           
+   70                                                           
+   60                                                           
+   50           *       *      *          *      *              
+   40  *     ** *   *   *  * * *          *      *              
+   30  *     *****  *   *  * * *     *    *      *              
+   20  *     ****** *   *  * * *     *    *      *       *      
+   10  #     #*##*# *   *  * # #     #    #*     #       *      
+     0....5....1....1....2....2....3....3....4....4....5....5....6
+               0    5    0    5    0    5    0    5    0    5    0
+               CPU% per minute (last 60 minutes)
+              * = maximum CPU%   # = average CPU%
+
+                                                                              
+                                                                              
+                                                                              
+      4                                                                       
+      9                                                                       
+  100                                                                       
+   90                                                                       
+   80                                                                       
+   70                                                                       
+   60                                                                       
+   50 *                                                                     
+   40 *                                                                     
+   30 *                                                                     
+   20 *                                                                     
+   10 *                                                                     
+     0....5....1....1....2....2....3....3....4....4....5....5....6....6....7..
+               0    5    0    5    0    5    0    5    0    5    0    5    0  
+                   CPU% per hour (last 72 hours)
+                  * = maximum CPU%   # = average CPU%
+
+
+
+------------------ show file systems ------------------
+
+
+File Systems:
+
+       Size(b)       Free(b)      Type  Flags  Prefixes
+             -             -    opaque     rw   system:
+             -             -    opaque     rw   tmpsys:
+             -             -    opaque     rw   null:
+             -             -    opaque     ro   tar:
+             -             -   network     rw   tftp:
+             -             -    opaque     wo   syslog:
+        522232        520754     nvram     rw   nvram:
+*            -             -      disk     rw   disk0:
+             -             -      disk     rw   disk1:
+             -             -     flash     rw   slot0: flash:
+             -             -     flash     rw   slot1:
+             -             -     flash     rw   bootflash:
+             -             -   network     rw   rcp:
+             -             -   network     rw   pram:
+             -             -   network     rw   ftp:
+             -             -   network     rw   http:
+             -             -   network     rw   scp:
+             -             -   network     rw   https:
+             -             -    opaque     ro   cns:
+
+
+------------------ show file descriptors ------------------
+
+
+File Descriptors:
+
+  No open file descriptors
+
+
+------------------ dir nvram: ------------------
+
+
+Directory of nvram:/
+
+  510  -rw-         402                    <no date>  startup-config
+  511  ----           0                    <no date>  private-config
+  512  -rw-         402                    <no date>  underlying-config
+    1  ----          69                    <no date>  persistent-data
+
+522232 bytes total (520754 bytes free)
+
+------------------ show controllers t1 ------------------
+
+
+
+------------------ show controllers e1 ------------------
+
+
+
+------------------ show ip nbar version ------------------
+
+
+
+
+NBAR software version:  13
+
+1   base                             Mv: 6
+2   ftp                              Mv: 7
+      Iv:                             smtp - 2
+      Iv:                          gridftp - 1
+3   http                             Mv: 20
+      Iv:                          youtube - 6
+      Iv:                    msn-messenger - 3
+      Iv:                  yahoo-messenger - 3
+      Iv:                      flash-video - 2
+      Iv:                       flashyahoo - 2
+      Iv:                     flashmyspace - 2
+      Iv:                  audio-over-http - 2
+      Iv:                 binary-over-http - 2
+      Iv:                  video-over-http - 2
+      Iv:                              irc - 2
+      Iv:                         babelgum - 1
+      Iv:                           itunes - 1
+      Iv:                            sling - 1
+      Iv:                     google-earth - 1
+      Iv:                      baidu-movie - 1
+      Iv:                            pando - 1
+      Iv:                          napster - 1
+      Iv:                         songsari - 1
+      Iv:                       webthunder - 1
+      Iv:                          sopcast - 3
+      Iv:                      tunnel-http - 1
+      Iv:                         soribada - 2
+      Iv:                              icq - 1
+      Iv:                            skype - 5
+      Iv:                          edonkey - 7
+      Iv:                    directconnect - 5
+      Iv:                         gnutella - 7
+      Iv:                        ms-update - 1
+      Iv:                             rtsp - 9
+      Iv:                          netflix - 1
+      Iv:                        megavideo - 1
+      Iv:                       bittorrent - 5
+      Iv:                              tor - 1
+      Iv:                            gmail - 1
+      Iv:                            gtalk - 1
+      Iv:                       gtalk-voip - 1
+      Iv:                      gtalk-video - 1
+      Iv:                       activesync - 1
+      Iv:                         rhapsody - 1
+      Iv:                            fring - 1
+      Iv:                            rtmpt - 1
+      Iv:                      livestation - 1
+      Iv:                       secondlife - 1
+      Iv:                         vnc-http - 1
+      Iv:                      share-point - 1
+      Iv:                    ms-office-365 - 1
+      Iv:                           ms-sms - 1
+      Iv:                        ghostsurf - 1
+      Iv:                         gotomypc - 1
+      Iv:                    adobe-connect - 1
+      Iv:                        realmedia - 1
+4   static                           Mv: 6
+5   socks                            Mv: 3
+6   nntp                             Mv: 2
+      Iv:                  yahoo-messenger - 3
+7   tftp                             Mv: 2
+8   ms-rpc                           Mv: 2
+      Iv:                         exchange - 4
+      Iv:                      ms-netlogon - 1
+      Iv:                       ms-win-dns - 1
+      Iv:                           ms-iis - 1
+      Iv:                 active-directory - 1
+9   exchange                         Mv: 4
+      Iv:                           ms-rpc - 2
+10  vdolive                          Mv: 1
+11  sqlnet                           Mv: 2
+12  oracle-sqlnet                    Mv: 2
+13  netshow                          Mv: 3
+14  sunrpc                           Mv: 3
+      Iv:                              nfs - 1
+      Iv:                        clearcase - 1
+15  nfs                              Mv: 1
+16  streamwork                       Mv: 2
+17  citrix                           Mv: 12
+18  fasttrack                        Mv: 3
+19  gnutella                         Mv: 7
+      Iv:                             http - 20
+20  kazaa2                           Mv: 11
+21  dhcp                             Mv: 1
+22  rtsp                             Mv: 9
+      Iv:                          youtube - 6
+23  webex-meeting                    Mv: 1
+      Iv:                              ssl - 1
+24  rtp                              Mv: 8
+      Iv:                         stun-nat - 1
+25  mgcp                             Mv: 2
+26  skinny                           Mv: 3
+      Iv:                      cisco-phone - 4
+27  sip                              Mv: 5
+      Iv:                      cisco-phone - 4
+      Iv:             telepresence-control - 4
+      Iv:              yahoo-voip-over-sip - 1
+      Iv:                       secondlife - 1
+28  rtcp                             Mv: 5
+      Iv:             telepresence-control - 4
+      Iv:                         stun-nat - 1
+29  edonkey                          Mv: 7
+      Iv:                             http - 20
+30  winmx                            Mv: 5
+31  bittorrent                       Mv: 5
+      Iv:                          blizwow - 2
+      Iv:                            socks - 3
+      Iv:                             http - 20
+32  directconnect                    Mv: 5
+      Iv:                             http - 20
+33  hl7                              Mv: 3
+34  fix                              Mv: 3
+      Iv:                              ssl - 1
+35  msn-messenger                    Mv: 3
+      Iv:                             http - 20
+      Iv:                           ms-wbt - 1
+      Iv:                            socks - 3
+36  ms-live-accounts                 Mv: 1
+37  dicom                            Mv: 4
+38  yahoo-messenger                  Mv: 3
+      Iv:                             http - 20
+      Iv:                             nntp - 2
+      Iv:                            socks - 3
+39  mapi                             Mv: 3
+40  aol-messenger                    Mv: 2
+      Iv:                            socks - 3
+      Iv:                              ssl - 1
+      Iv:                             http - 20
+41  cifs                             Mv: 2
+42  cisco-phone                      Mv: 4
+      Iv:                              sip - 5
+      Iv:                           skinny - 3
+      Iv:             telepresence-control - 4
+43  youtube                          Mv: 6
+      Iv:                             http - 20
+      Iv:                             rtsp - 9
+44  realmedia                        Mv: 1
+      Iv:                             http - 20
+      Iv:                             rtsp - 9
+45  imap                             Mv: 1
+46  pop3                             Mv: 1
+47  irc                              Mv: 2
+      Iv:                             http - 20
+48  skype                            Mv: 5
+      Iv:                             http - 20
+      Iv:                              dns - 1
+49  blizwow                          Mv: 2
+      Iv:                       bittorrent - 5
+50  telepresence-media               Mv: 3
+51  telepresence-control             Mv: 4
+      Iv:                             rtcp - 5
+      Iv:                      cisco-phone - 4
+      Iv:                              sip - 5
+52  zattoo                           Mv: 3
+53  sopcast                          Mv: 3
+      Iv:                             http - 20
+54  flash-video                      Mv: 2
+      Iv:                             http - 20
+55  flashyahoo                       Mv: 2
+      Iv:                             http - 20
+56  flashmyspace                     Mv: 2
+      Iv:                             http - 20
+57  audio-over-http                  Mv: 2
+      Iv:                             http - 20
+58  binary-over-http                 Mv: 2
+      Iv:                             http - 20
+59  video-over-http                  Mv: 2
+      Iv:                             http - 20
+60  my-jabber-ft                     Mv: 1
+61  ayiya-ipv6-tunneled              Mv: 1
+62  filetopia                        Mv: 1
+63  guruguru                         Mv: 1
+64  manolito                         Mv: 1
+65  radius                           Mv: 1
+66  teamspeak                        Mv: 1
+67  soribada                         Mv: 2
+      Iv:                             http - 20
+68  dht                              Mv: 1
+69  pptp                             Mv: 2
+70  ntp                              Mv: 1
+71  poco                             Mv: 2
+72  ventrilo                         Mv: 1
+73  tomatopang                       Mv: 1
+74  maplestory                       Mv: 1
+75  itunes                           Mv: 1
+      Iv:                             http - 20
+76  napster                          Mv: 1
+      Iv:                             http - 20
+77  sling                            Mv: 1
+      Iv:                             http - 20
+78  google-earth                     Mv: 1
+      Iv:                             http - 20
+79  baidu-movie                      Mv: 1
+      Iv:                             http - 20
+80  pando                            Mv: 1
+      Iv:                             http - 20
+81  webthunder                       Mv: 1
+      Iv:                             http - 20
+82  babelgum                         Mv: 1
+      Iv:                             http - 20
+83  songsari                         Mv: 1
+      Iv:                             http - 20
+84  tunnel-http                      Mv: 1
+      Iv:                             http - 20
+85  teredo-ipv6-tunneled             Mv: 1
+86  sixtofour-ipv6-tunneled          Mv: 1
+      Iv:             isatap-ipv6-tunneled - 1
+87  isatap-ipv6-tunneled             Mv: 1
+      Iv:          sixtofour-ipv6-tunneled - 1
+88  fring                            Mv: 1
+      Iv:                             http - 20
+89  fring-voip                       Mv: 1
+      Iv:                      fring-video - 1
+90  fring-video                      Mv: 1
+      Iv:                       fring-voip - 1
+91  waste                            Mv: 1
+92  kuro                             Mv: 1
+93  smtp                             Mv: 2
+94  icq                              Mv: 1
+      Iv:                             http - 20
+95  soulseek                         Mv: 1
+96  yahoo-voip-messenger             Mv: 2
+      Iv:                              rtp - 8
+97  yahoo-voip-over-sip              Mv: 1
+      Iv:                              sip - 5
+98  aol-protocol                     Mv: 1
+      Iv:                    aol-messenger - 2
+99  ipsec                            Mv: 1
+100  isakmp                           Mv: 1
+101  ppstream                         Mv: 1
+102  rtmp                             Mv: 1
+103  rtmpe                            Mv: 1
+104  rtmpt                            Mv: 1
+      Iv:                             http - 20
+105  dns                              Mv: 1
+      Iv:                       tcpoverdns - 1
+      Iv:                            skype - 5
+106  windows-update                   Mv: 1
+107  encrypted-emule                  Mv: 1
+108  networking-gnutella              Mv: 1
+109  encrypted-bittorrent             Mv: 1
+110  ms-wbt                           Mv: 1
+      Iv:                    msn-messenger - 3
+111  gmail                            Mv: 1
+      Iv:                             http - 20
+      Iv:                              ssl - 1
+112  openvpn                          Mv: 1
+      Iv:                              ssl - 1
+113  ssl                              Mv: 1
+      Iv:                              fix - 3
+      Iv:                    webex-meeting - 1
+      Iv:                          netflix - 1
+      Iv:                            gmail - 1
+      Iv:                      livemeeting - 1
+      Iv:                      livestation - 1
+      Iv:                              dmp - 1
+      Iv:                         rhapsody - 1
+      Iv:                       secondlife - 1
+      Iv:                 ms-live-accounts - 1
+      Iv:                  google-accounts - 1
+      Iv:                 active-directory - 1
+      Iv:                          sip-tls - 1
+      Iv:                    ms-office-365 - 1
+      Iv:                            pcoip - 1
+      Iv:                      vmware-view - 1
+      Iv:                          openvpn - 1
+      Iv:                        ms-update - 1
+      Iv:                            mysql - 1
+      Iv:                         gotomypc - 1
+      Iv:                        ghostsurf - 1
+      Iv:                    adobe-connect - 1
+      Iv:                    aol-messenger - 2
+      Iv:                      share-point - 1
+      Iv:                        realmedia - 1
+114  ghostsurf                        Mv: 1
+      Iv:                             http - 20
+115  netflix                          Mv: 1
+      Iv:                             http - 20
+      Iv:                              ssl - 1
+116  megavideo                        Mv: 1
+      Iv:                             http - 20
+117  stun-nat                         Mv: 1
+118  viber                            Mv: 1
+119  cisco-ip-camera                  Mv: 1
+      Iv:                             rtsp - 9
+120  livestation                      Mv: 1
+      Iv:                             http - 20
+      Iv:                             rtmp - 1
+      Iv:                              ssl - 1
+121  gridftp                          Mv: 1
+122  winny                            Mv: 1
+123  livemeeting                      Mv: 1
+      Iv:                              ssl - 1
+      Iv:                         stun-nat - 1
+124  tor                              Mv: 1
+      Iv:                             http - 20
+      Iv:                              ssl - 1
+125  xmpp-client                      Mv: 1
+126  gtalk-chat                       Mv: 1
+      Iv:                      xmpp-client - 1
+127  gtalk                            Mv: 1
+      Iv:                             http - 20
+      Iv:                         stun-nat - 1
+      Iv:                      gtalk-video - 1
+      Iv:                       gtalk-voip - 1
+      Iv:                         gtalk-ft - 1
+128  gtalk-voip                       Mv: 1
+      Iv:                             http - 20
+      Iv:                         stun-nat - 1
+      Iv:                            gtalk - 1
+129  gtalk-ft                         Mv: 1
+      Iv:                         stun-nat - 1
+      Iv:                            gtalk - 1
+130  gtalk-video                      Mv: 1
+      Iv:                             http - 20
+      Iv:                         stun-nat - 1
+      Iv:                            gtalk - 1
+131  steam                            Mv: 1
+132  ping                             Mv: 1
+133  exec                             Mv: 1
+134  login                            Mv: 1
+135  shell                            Mv: 1
+136  netapp-snapmirror                Mv: 1
+137  ms-iis                           Mv: 1
+      Iv:                           ms-rpc - 2
+138  ms-win-dns                       Mv: 1
+      Iv:                           ms-rpc - 2
+139  ms-netlogon                      Mv: 1
+      Iv:                           ms-rpc - 2
+140  ms-sms                           Mv: 1
+      Iv:                             http - 20
+      Iv:                        ms-update - 1
+141  perforce                         Mv: 1
+142  vnc                              Mv: 1
+143  vnc-http                         Mv: 1
+      Iv:                             http - 20
+144  secondlife                       Mv: 1
+      Iv:                              ssl - 1
+      Iv:                             http - 20
+      Iv:                              sip - 5
+145  msn-messenger-filetransfer       Mv: 1
+146  icq-filetransfer                 Mv: 1
+147  tcpoverdns                       Mv: 1
+      Iv:                              dns - 1
+148  msn-messenger-video              Mv: 1
+      Iv:                         stun-nat - 1
+      Iv:                              rtp - 8
+149  share-point                      Mv: 1
+      Iv:                             http - 20
+      Iv:                              ssl - 1
+150  sip-tls                          Mv: 1
+      Iv:                              ssl - 1
+151  activesync                       Mv: 1
+      Iv:                             http - 20
+152  rhapsody                         Mv: 1
+      Iv:                             http - 20
+      Iv:                             rtmp - 1
+      Iv:                              ssl - 1
+153  ip-messenger                     Mv: 1
+154  capwap-control                   Mv: 1
+      Iv:                      capwap-data - 1
+155  capwap-data                      Mv: 1
+      Iv:                   capwap-control - 1
+156  dmp                              Mv: 1
+      Iv:                              ssl - 1
+157  netbios-ns                       Mv: 1
+158  ldap                             Mv: 1
+159  active-directory                 Mv: 1
+      Iv:                           ms-rpc - 2
+      Iv:                             cifs - 2
+      Iv:                             ldap - 1
+      Iv:                              ssl - 1
+160  google-accounts                  Mv: 1
+161  ms-office-365                    Mv: 1
+      Iv:                             http - 20
+      Iv:                              ssl - 1
+162  teamviewer                       Mv: 1
+163  pcanywhere                       Mv: 1
+164  snmp                             Mv: 1
+165  vmware-vmotion                   Mv: 1
+166  pcoip                            Mv: 1
+      Iv:                              ssl - 1
+167  vmware-view                      Mv: 1
+      Iv:                              ssl - 1
+168  gotomypc                         Mv: 1
+      Iv:                             http - 20
+      Iv:                              ssl - 1
+169  kerberos                         Mv: 1
+170  clearcase                        Mv: 1
+171  ms-update                        Mv: 1
+      Iv:                              ssl - 1
+      Iv:                             http - 20
+      Iv:                           ms-sms - 1
+172  mysql                            Mv: 1
+      Iv:                              ssl - 1
+173  sqlserver                        Mv: 1
+      Iv:                             cifs - 2
+174  adobe-connect                    Mv: 1
+      Iv:                             rtmp - 1
+      Iv:                              ssl - 1
+      Iv:                             http - 20
+175  aol-messenger-audio              Mv: 1
+      Iv:                              rtp - 8
+176  aol-messenger-video              Mv: 1
+      Iv:              aol-messenger-audio - 1
+      Iv:                              rtp - 8
+      Iv:                             http - 20
+      Iv:                         stun-nat - 1
+      Iv:                             rtmp - 1
+177  aol-messenger-ft                 Mv: 1
+      Iv:              aol-messenger-audio - 1
+178  ms-sql-m                         Mv: 1
+179  hopopt                           Mv: 1
+180  ipv6-frag                        Mv: 1
+181  ipv6-nonxt                       Mv: 1
+182  ipv6-opts                        Mv: 1
+183  ipv6-route                       Mv: 1
+184  oscar-filetransfer               Mv: 1
+      Iv:              aol-messenger-audio - 1
+185  iana                             Mv: 1
+186  custom-protocols                 Mv: 1
+187  attribute                        Mv: 1
+
+
+{<No.>}<PDLM name> Mv: <PDLM Version>, {Nv: <NBAR Software Version>; <File name>}
+            {Iv: <PDLM Interdependency Name>   - <PDLM Interdependency Version>}
+
+
+------------------ show crypto key mypubkey rsa ------------------
+
+
+------------------ show crypto call admission statistics ------------------
+
+---------------------------------------------------------------------
+               Crypto Call Admission Control Statistics
+---------------------------------------------------------------------
+System Resource Limit:        0 Max IKE SAs:     0 Max in nego:  1000
+Total IKE SA Count:           0 active:          0 negotiating:     0
+Incoming IKE Requests:        0 accepted:        0 rejected:        0
+Outgoing IKE Requests:        0 accepted:        0 rejected:        0
+Rejected IKE Requests:        0 rsrc low:        0 Active SA limit: 0
+                                                   In-neg SA limit: 0
+IKE packets dropped at dispatch:        0
+
+Max IPSEC SAs:     0
+Total IPSEC SA Count:           0 active:          0 negotiating:     0
+Incoming IPSEC Requests:        0 accepted:        0 rejected:        0
+Outgoing IPSEC Requests:        0 accepted:        0 rejected:        0
+
+Phase1.5 SAs under negotiation:         0 
+
+
+------------------ show inventory ------------------
+
+NAME: "Chassis", DESCR: "Cisco 7206VXR, 6-slot chassis"
+PID: CISCO7206VXR      , VID:    , SN: 4279256517 
+
+NAME: "NPE400 0", DESCR: "Cisco 7200VXR Network Processing Engine NPE-400"
+PID: NPE-400           , VID:    , SN: 11111111   
+
+NAME: "module 0", DESCR: "I/O FastEthernet (TX-ISL)"
+PID: C7200-IO-FE-MII/RJ, VID:    , SN: 4294967295 
+
+NAME: "module 1", DESCR: "FastEthernet"
+PID: PA-FE-TX          , VID:    , SN: 4294967295 
+
+NAME: "Power Supply 0", DESCR: "Cisco 7200 AC Power Supply"
+PID: PWR-7200-AC       , VID:    , SN:            
+
+NAME: "Power Supply 1", DESCR: "Cisco 7200 AC Power Supply"
+PID: PWR-7200-AC       , VID:    , SN:            
+
+
+
+------------------ show region ------------------
+
+
+Region Manager:
+
+      Start         End     Size(b)  Class  Media  Name
+ 0x0E000000  0x0FFFFFFF    33554432  Iomem  R/W    iomem
+ 0x60000000  0x7DFFFFFF   503316480  Local  R/W    main
+ 0x60008EB0  0x6386285F    59087280  IText  R/O    main:text
+ 0x63864000  0x64EB8C1F    23415840  IData  R/W    main:data
+ 0x64EB8C20  0x6558E3FF     7165920  IBss   R/W    main:bss
+ 0x6558E400  0x6658E3FF    16777216  Local  R/W    main:heap
+ 0x6658E4A0  0x6758E49F    16777216  Local  R/W    main:heap
+ 0x6758E540  0x6858E53F    16777216  Local  R/W    main:heap
+ 0x6858E5E0  0x6958E5DF    16777216  Local  R/W    main:heap
+ 0x7D000000  0x7DFFFFFF    16777216  Local  R/W    main:heap
+ 0x7E000000  0x7FFFFFFF    33554432  Iomem  R/W    iomem:(iomem_cwt)
+ 0x80000000  0x8DFFFFFF   234881024  Local  R/W    main:(main_k0)
+ 0xA0000000  0xADFFFFFF   234881024  Local  R/W    main:(main_k1)
+
+
+Free Region Manager:
+
+      Start         End     Size(b)  Class  Media  Name
+ 0x6958E680  0x7CFFFF5F   329717984  Local  R/W    heap
+
+
+
+------------------ Mempool statistics ------------------
+
+
+                Head    Total(b)     Used(b)     Free(b)   Lowest(b)  Largest(b)
+Processor   6558E400   396826796    52921492   343905304   343205760   329717932
+      I/O    E000000    33554432     2435528    31118904    31090628    31090588
+Transient   7D000000    16777216       10156    16767060    16766416    16767060
+
+-------------- Top 100 allocator pc summary -----------
+
+
+Allocator PC Summary for: Processor
+
+    PC          Total   Count  Name
+0x62827634    2181780     115  XOS_MEM_UTILS
+0x6317567C    2173416     258  Process Stack
+0x62BED270    1937628       2  RMON packet pool
+0x62D5082C    1663484     906  *Packet Header*
+0x62D50888    1331016     253  *Packet Data*
+0x637334F0    1194928       1  AC dtrace stridx
+0x605DA3CC    1106016      12  event_trace_tbs
+0x61E135B4    1101692    1105  *Init*
+0x60C3A028    1040156       2  mfib_db
+0x61E074C0    1006620      99  TW Buckets
+0x61F7C7C4     880156       2  cef_interface
+0x62022F18     880156       2  adjacency
+0x60D4C214     880156       2  multicast topology
+0x62D55330     738944      17  pak subblock chunk
+0x60C6C150     640156       2  mfib_wire
+0x62069200     640156       2  cef_ipv4
+0x620E1158     640156       2  cef_ipv6
+0x61BCD4AC     640156       2  event
+0x60544020     637552      74  Exec
+0x60C3C660     560156       2  mfib_table
+0x60C8856C     560156       2  mfib_ipv4
+0x60C8C890     560156       2  mfib_ipv6
+0x608D35A0     543276    5430  Init
+0x6326723C     524340       1  L2X Hash Table
+0x600625C4     480156       2  ARP
+0x6281F048     476524      25  LSPV parser tt path pool
+0x608D35C0     460956    5289  Init
+0x61C77778     426344       5  Init
+0x608D35B4     420272    5430  Init
+0x61CCD4A8     408228       1  Init
+0x60C2E458     400156       2  mfib_cable
+0x60C50080     400156       2  mfib_events
+0x61FD1E84     400156       2  oce_events
+0x619187A8     384156       2  ppcp
+0x61986290     384156       2  ppm
+0x619EAB40     384156       2  ffmshim
+0x634B8F40     376988       2  gdoi_exit
+0x62B99768     341524    3169  IPC Global Info
+0x62D60974     324660       1  Init
+0x62D60988     324660       1  Init
+0x62D55FDC     315324     114  Normal
+0x62334658     312496    1059  PfR BR Appl Namelist: Column
+0x61476584     291560       7  RRR_AUTOMESH hw subblock
+0x63710374     267644      46  LSP_VIF radix trie
+0x6371F6B4     262560       8  XC ST PW OAM Mgr DB
+0x62B5B494     262352       4  IPC Message Hea
+0x61CEE28C     262352       4  STP Port Control Block Chunk
+0x61F73B4C     262248       2  CEF: hash table
+0x605CFC24     262196       1  Init
+0x61DB7160     232156       2  tunnel
+0x61E50E40     214016     256  Process
+0x604BFADC     188240       1  NET ACCT LISTS
+0x604BFB00     188240       1  SYS ACCT LISTS
+0x604BFB28     188240       1  VRRS ACCT LISTS
+0x6047FEB4     184236       1  DOT1X ACC LISTS
+0x6047FEDC     184236       1  EOU ACC LISTS
+0x6047FF14     184236       1  PPP ACC LISTS
+0x6047FF50     168220       1  NET AUTHOR LISTS
+0x6047FF80     168220       1  SUBSCRIBER-PROFILE AUTHOR LISTS
+0x6009750C     153268       1  Init
+0x6368350C     152156       2  tp_ss_events
+0x6296C234     149524    1947  Init
+0x61CCDAEC     149328       9  NBAR Attr Chunk
+0x6119A460     144052       1  MPLS Event log
+0x635037B0     140156       2  cfd
+0x60628334     136156       2  nvram
+0x6373352C     132816       1  AC dtrace stridx2slot
+0x63732AA8     132816       1  AC dtrace stridx freelist
+0x63732D6C     132816       1  AC dtrace stridx slots
+0x61E00F24     132736       8  uEvent Elements
+0x62007DD4     132008       4  VRFS: MTRIE n08
+0x615C21F0     131512       4  DSensor 32
+0x609F5828     131176       2  blt array
+0x62D5CBF0     131124       1  *Init*
+0x633B5EB0     131124       1  IP Lite hash buckets
+0x6365D168     128156       2  flexvpn
+0x608A9204     128052       1  Init
+0x61F78494     128052       1  CEF: fibidb table
+0x61F784B4     128052       1  CEF: fibhwidb table
+0x61A447D4     128052       1  Init
+0x61DCD64C     120624      12  RMI RO-RU Chunk
+0x622E7EC8     112156       2  nhrp_error
+0x60539FC8     110064    1300  Parser Linkage
+0x63719B54     110064       5  RIB App Handlee Allocator
+0x607D68C8     105156      23  EEM Server
+0x607D694C     105156      23  EEM Server
+0x607D68B8     105156      23  EEM Server
+0x604D2A28      98356       1  AAA attr list handle IDs
+0x61E01890      95988      19  List Headers
+0x608C2F64      93608     650  Init
+0x61FCC8DC      92084       4  OCE reinject ha
+0x6331607C      90692       3  BITLIST CHUNK
+0x6373DFD4      90180     262  TCP Command
+0x60906790      88156       2  fnf_mon
+0x60DF5A58      87600       2  MVPN IDB up/down process queue events
+0x608CAF60      84680     868  Init
+0x61DF9D70      84076      29  keepalive
+0x61336C0C      84052       1  Init
+0x622E7EFC      80156       2  nhrp_exception
+0x60D8539C      78556       1  Init
+
+
+Allocator PC Summary for: I/O
+
+    PC          Total   Count  Name
+0x62D56000    1603840      36  Normal
+0x62D55F50     588608       5  Normal
+0x62D50888     225760     159  *Packet Data*
+0x62E51A54       8320       2  FastEthernet0/0
+0x62E519C8       4224       2  FastEthernet0/0
+0x62C72598       4160       1  Init
+0x62E519A4        512       2  FastEthernet0/0
+
+
+Allocator PC Summary for: Transient
+
+    PC          Total   Count  Name
+0x61E4CDC0      10104       2  Watcher Info
+
+
+------------------ show dmvpn detail ------------------
+
+Legend: Attrb --> S - Static, D - Dynamic, I - Incomplete
+	N - NATed, L - Local, X - No Socket
+	# Ent --> Number of NHRP entries with same NBMA peer
+	NHS Status: E --> Expecting Replies, R --> Responding, W --> Waiting
+	UpDn Time --> Up or Down Time for a Tunnel
+==========================================================================
+
+
+------------------ show diag ------------------
+
+
+Slot 0:
+	Fast-ethernet on C7200 I/O card with MII or RJ45 Port adapter, 1 port
+	Port adapter is analyzed 
+	Port adapter insertion time 01:48:35 ago
+	EEPROM contents at hardware discovery:
+	Hardware revision 1.14        	Board revision A0
+	Serial number     4294967295	Part number    73-2956-02
+	FRU Part Number:  C7200-IO-FE-MII/RJ45=
+
+	Test history      0x0         	RMA number     00-00-00
+	EEPROM format version 1
+	EEPROM contents (hex):
+	  0x20: 01 83 01 0E FF FF FF FF 49 0B 8C 02 00 00 00 00
+	  0x30: 50 00 00 00 98 12 28 00 00 FF FF FF FF FF FF FF
+
+Slot 1:
+	Fast-ethernet (TX-ISL) Port adapter, 1 port
+	Port adapter is analyzed 
+	Port adapter insertion time 01:48:35 ago
+	EEPROM contents at hardware discovery:
+	Hardware revision 1.2         	Board revision C0
+	Serial number     4294967295	Part number    73-1688-04
+	FRU Part Number:  PA-FE-TX
+
+	Test history      0x0         	RMA number     00-00-00
+	EEPROM format version 1
+	EEPROM contents (hex):
+	  0x20: 01 11 01 02 FF FF FF FF 49 06 98 04 00 00 00 00
+	  0x30: 60 00 00 00 98 12 17 00 FF FF FF FF FF FF FF FF
+
+
+------------------ show c7200 ------------------
+
+Network IO Interrupt Throttling:
+ throttle count=0, timer count=0
+ active=0, configured=0
+ netint usec=4000, netint mask usec=200
+
+Midplane EEPROM:
+	Hardware revision 2.1         	Board revision M0
+	Serial number     4279256517	Part number    73-1539-03
+	Test history      0x0         	RMA number     00-00-00
+	MAC Pool Size     1024      	MAC Addr Base  ca08.1350.0000
+	Chassis Model     0x6         
+	EEPROM format version 1
+	EEPROM contents (hex):
+	  0x00: 01 06 02 01 FF 10 45 C5 49 06 03 03 CA 08 13 50
+	  0x10: 00 00 04 00 00 00 00 00 4C 09 10 B0 FF FF 00 FF
+	  0x20: 64 EC 00 00 65 7C 93 94 68 21 BC 50 65 7C 93 94
+	  0x30: 67 53 10 90 68 21 BC 50 00 00 00 00 64 EC 00 00
+
+C7206VXR CPU EEPROM:
+	Controller Type          : 504
+	Hardware Revision        : 1.0
+	Top Assy. Part Number    : 800-08136-02
+	PCB Part Number          : 73-5308-02
+	Board Revision           : B0
+	PCB Serial Number        : 11111111
+	RMA History              : 00
+	Fab Version              : 02
+	Fab Part Number          : 28-4086-02
+	Product Identifier (PID) : NPE-400
+	Deviation Number         : 0-0
+	EEPROM format version 4
+	EEPROM contents (hex):
+	  0x00: 04 FF 40 01 F8 41 01 00 C0 46 03 20 00 1F C8 02
+	  0x10: 82 49 14 BC 02 42 42 30 C1 8B 31 31 31 31 31 31
+	  0x20: 31 31 00 00 00 04 00 02 02 85 1C 0F F6 02 CB 87
+	  0x30: 4E 50 45 2D 34 30 30 80 00 00 00 00 FF FF FF FF
+	  0x40: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+	  0x50: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+	  0x60: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+	  0x70: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+
+TLB entries (51/64 used):
+Virt Address range      Phy Address range         Attributes
+0x4B000000:0x4B1FFFFF   0x14B000000:0x14B1FFFFF   CacheMode=2, RW, Valid
+0x4B200000:0x4B3FFFFF   0x14B200000:0x14B3FFFFF   CacheMode=2, RW, Valid
+0x10000000:0x10001FFF   0x100000000:0x100001FFF   CacheMode=2, RW, Valid
+0x40000000:0x41FFFFFF   0x040000000:0x041FFFFFF   CacheMode=2, RW, Valid
+0x44000000:0x45FFFFFF   0x044000000:0x045FFFFFF   CacheMode=2, RW, Valid
+0x3C000000:0x3C7FFFFF   0x048000000:0x0487FFFFF   CacheMode=2, RW, Valid
+0x3C800000:0x3CFFFFFF   0x048800000:0x048FFFFFF   CacheMode=2, RW, Valid
+0x3D000000:0x3D7FFFFF   0x04D000000:0x04D7FFFFF   CacheMode=2, RW, Invalid
+0x3D800000:0x3DFFFFFF   0x049000000:0x0497FFFFF   CacheMode=2, RW, Invalid
+0x3E000000:0x3E7FFFFF   0x04D800000:0x04DFFFFFF   CacheMode=2, RW, Invalid
+0x3E800000:0x3EFFFFFF   0x049800000:0x049FFFFFF   CacheMode=2, RW, Invalid
+0x3F000000:0x3F7FFFFF   0x04E000000:0x04E7FFFFF   CacheMode=2, RW, Invalid
+0x1FC00000:0x1FC7FFFF   0x01FC00000:0x01FC7FFFF   CacheMode=2, RO, Valid
+0x1E000000:0x1E1FFFFF   0x01E000000:0x01E1FFFFF   CacheMode=2, RW, Valid
+0x1E800000:0x1E9FFFFF   0x01E800000:0x01E9FFFFF   CacheMode=2, RW, Valid
+0xFE000000:0xFE07FFFF   0x0FE000000:0x0FE07FFFF   CacheMode=2, RW, Valid
+0x60000000:0x61FFFFFF   0x000000000:0x001FFFFFF   CacheMode=3, RO, Valid
+0x62000000:0x627FFFFF   0x002000000:0x0027FFFFF   CacheMode=3, RO, Valid
+0x62800000:0x62FFFFFF   0x002800000:0x002FFFFFF   CacheMode=3, RO, Valid
+0x63000000:0x637FFFFF   0x003000000:0x0037FFFFF   CacheMode=3, RO, Valid
+0x63800000:0x6381FFFF   0x003800000:0x00381FFFF   CacheMode=3, RO, Valid
+0x63820000:0x6383FFFF   0x003820000:0x00383FFFF   CacheMode=3, RO, Valid
+0x63840000:0x6385FFFF   0x003840000:0x00385FFFF   CacheMode=3, RO, Valid
+0x63860000:0x63861FFF   0x003860000:0x003861FFF   CacheMode=3, RO, Valid
+0x63862000:0x63863FFF   0x003862000:0x003863FFF   CacheMode=3, RO, Valid
+0x63864000:0x63865FFF   0x003864000:0x003865FFF   CacheMode=3, RW, Valid
+0x63866000:0x63867FFF   0x003866000:0x003867FFF   CacheMode=3, RW, Valid
+0x63868000:0x6386FFFF   0x003868000:0x00386FFFF   CacheMode=3, RW, Valid
+0x63870000:0x63877FFF   0x003870000:0x003877FFF   CacheMode=3, RW, Valid
+0x63878000:0x6387FFFF   0x003878000:0x00387FFFF   CacheMode=3, RW, Valid
+0x63880000:0x638FFFFF   0x003880000:0x0038FFFFF   CacheMode=3, RW, Valid
+0x63900000:0x6397FFFF   0x003900000:0x00397FFFF   CacheMode=3, RW, Valid
+0x63980000:0x639FFFFF   0x003980000:0x0039FFFFF   CacheMode=3, RW, Valid
+0x63A00000:0x63BFFFFF   0x003A00000:0x003BFFFFF   CacheMode=3, RW, Valid
+0x63C00000:0x63DFFFFF   0x003C00000:0x003DFFFFF   CacheMode=3, RW, Valid
+0x63E00000:0x63FFFFFF   0x003E00000:0x003FFFFFF   CacheMode=3, RW, Valid
+0x64000000:0x65FFFFFF   0x004000000:0x005FFFFFF   CacheMode=3, RW, Valid
+0x66000000:0x67FFFFFF   0x006000000:0x007FFFFFF   CacheMode=3, RW, Valid
+0x68000000:0x69FFFFFF   0x008000000:0x009FFFFFF   CacheMode=3, RW, Valid
+0x6A000000:0x6BFFFFFF   0x00A000000:0x00BFFFFFF   CacheMode=3, RW, Valid
+0x6C000000:0x6DFFFFFF   0x00C000000:0x00DFFFFFF   CacheMode=3, RW, Valid
+0x6E000000:0x6FFFFFFF   0x020000000:0x021FFFFFF   CacheMode=3, RW, Valid
+0x70000000:0x71FFFFFF   0x022000000:0x023FFFFFF   CacheMode=3, RW, Valid
+0x72000000:0x73FFFFFF   0x024000000:0x025FFFFFF   CacheMode=3, RW, Valid
+0x74000000:0x75FFFFFF   0x026000000:0x027FFFFFF   CacheMode=3, RW, Valid
+0x76000000:0x77FFFFFF   0x028000000:0x029FFFFFF   CacheMode=3, RW, Valid
+0x78000000:0x79FFFFFF   0x02A000000:0x02BFFFFFF   CacheMode=3, RW, Valid
+0x7A000000:0x7BFFFFFF   0x02C000000:0x02DFFFFFF   CacheMode=3, RW, Valid
+0x7C000000:0x7DFFFFFF   0x02E000000:0x02FFFFFFF   CacheMode=3, RW, Valid
+0x0E000000:0x0FFFFFFF   0x00E000000:0x00FFFFFFF   CacheMode=2, RW, Valid
+0x7E000000:0x7FFFFFFF   0x00E000000:0x00FFFFFFF   CacheMode=0, RW, Valid
+
+0 spurious cache errors detected.
+
+
+System Controller Network Interrupts
+ Wrapper is NOT installed
+
+Registered Interrupts:
+ Level Mask               Count      Data       Interrupt Handler
+
+
+------------------ show pci hardware ------------------
+
+
+GT64120 External PCI Configuration registers:
+PCI_0:
+ Vendor / Device ID   : 0xAB112046 (b/s 0x462011AB)
+ Status / Command     : 0x00000000 (b/s 0x00000000)
+ Class / Revision     : 0x05800003 (b/s 0x03008005)
+ Latency              : 0x00000000 (b/s 0x00000000)
+ RAS[1:0] Base        : 0x00000000 (b/s 0x00000000)
+ RAS[3:2] Base        : 0x00000000 (b/s 0x00000000)
+ CS[2:0] Base         : 0x00000000 (b/s 0x00000000)
+ CS[3] Base           : 0x00000000 (b/s 0x00000000)
+ Mem Map Base         : 0x00000000 (b/s 0x00000000)
+ IO Map Base          : 0x00000000 (b/s 0x00000000)
+ Subsystem Vendor / D : 0x00000000 (b/s 0x00000000)
+ Int Pin / Line       : 0x00000000 (b/s 0x00000000)
+ Swap RAS[1:0] Base   : 0x00000000 (b/s 0x00000000)
+ Swap RAS[3:2] Base   : 0x00000000 (b/s 0x00000000)
+ Swap CS[3] Base      : 0x00000000 (b/s 0x00000000)
+PCI_1:
+ Vendor / Device ID   : 0x00000000 (b/s 0x00000000)
+ Status / Command     : 0x00000000 (b/s 0x00000000)
+ Class / Revision     : 0x00000000 (b/s 0x00000000)
+ Latency              : 0x00000000 (b/s 0x00000000)
+ RAS[1:0] Base        : 0x00000000 (b/s 0x00000000)
+ RAS[3:2] Base        : 0x00000000 (b/s 0x00000000)
+ CS[2:0] Base         : 0x00000000 (b/s 0x00000000)
+ CS[3] Base           : 0x00000000 (b/s 0x00000000)
+ Mem Map Base         : 0x00000000 (b/s 0x00000000)
+ IO Map Base          : 0x00000000 (b/s 0x00000000)
+ Subsystem Vendor / D : 0x00000000 (b/s 0x00000000)
+ Int Pin / Line       : 0x00000000 (b/s 0x00000000)
+ Swap RAS[1:0] Base   : 0x00000000 (b/s 0x00000000)
+ Swap RAS[3:2] Base   : 0x00000000 (b/s 0x00000000)
+ Swap CS[3] Base      : 0x00000000 (b/s 0x00000000)
+
+Bridge 0, for PA Bay 0 (I/O Card, PCMCIA, Interfaces), Handle=0
+DEC21050 bridge chip, config=0x0
+(0x00):dev, vendor id       = 0x00011011
+(0x04):status, command      = 0x00000000
+(0x08):class code, revid    = 0x06040000
+(0x0C):hdr, lat timer, cls  = 0x00000000
+(0x18):sec lat,cls & bus no = 0x18020100
+(0x1C):sec status, io base  = 0x00000000
+(0x20):mem base & limit     = 0x00000000
+(0x24):prefetch membase/lim = 0x00000000
+(0x3C):bridge ctrl          = 0x00000000
+(0x40):arb/serr, chip ctrl  = 0x00000000
+(0x44):pri/sec trgt wait t. = 0x00000000
+(0x48):sec write attmp ctr  = 0x00000000
+(0x4C):pri write attmp ctr  = 0x00000000
+
+CLPD6729 registers:
+ (0x00) Chip Revision = 0x48
+ (0x1E) Misc Control 2 = 0x08
+ (0x1F) Chip Information = 0x00
+
+ Socket 0:
+  (0x01) Interface Status = 0x80
+  (0x02) Power Control = 0x90
+  (0x03) Interrupt and General Control = 0x40
+  (0x04) Card Status Change = 0x00
+  (0x05) Management Interrupt Configuration = 0x38
+  (0x06) Mapping Enable = 0x11
+  (0x07) I/O Window Control = 0x00
+  (0x08) System I/O Map 0 Start Address Low = 0x00
+  (0x09) System I/O Map 0 Start Address High = 0x00
+  (0x0A) System I/O Map 0 End Address Low = 0x00
+  (0x0B) System I/O Map 0 End Address High = 0x00
+  (0x0C) System I/O Map 1 Start Address Low = 0x00
+  (0x0D) System I/O Map 1 Start Address High = 0x00
+  (0x0E) System I/O Map 1 End Address Low = 0x00
+  (0x0F) System I/O Map 1 End Address High = 0x00
+  (0x10) System Memory Map 0 Start Address Low = 0x00
+  (0x11) System Memory Map 0 Start Address High = 0x81
+  (0x12) System Memory Map 0 End Address Low = 0xFF
+  (0x13) System Memory Map 0 End Address High = 0x04
+  (0x05 EXT) System Memory Map 0 Upper Address = 0x40
+  (0x14) Card Memory Map 0 Offset Address Low = 0x00
+  (0x15) Card Memory Map 0 Offset Address High = 0x3F
+  (0x16) Misc Control 1 = 0x00
+  (0x26) ATA Control = 0x00
+  (0x17) FIFO Control = 0x80
+  (0x18) System Memory Map 1 Start Address Low = 0x00
+  (0x19) System Memory Map 1 Start Address High = 0x00
+  (0x1A) System Memory Map 1 End Address Low = 0x00
+  (0x1B) System Memory Map 1 End Address High = 0x00
+  (0x06 EXT) System Memory Map 1 Upper Address = 0x40
+  (0x1C) Card Memory Map 1 Offset Address Low = 0x00
+  (0x1D) Card Memory Map 1 Offset Address High = 0x00
+  (0x20) System Memory Map 2 Start Address Low = 0x00
+  (0x21) System Memory Map 2 Start Address High = 0x00
+  (0x22) System Memory Map 2 End Address Low = 0x00
+  (0x23) System Memory Map 2 End Address High = 0x00
+  (0x07 EXT) System Memory Map 2 Upper Address = 0x40
+  (0x24) Card Memory Map 2 Offset Address Low = 0x00
+  (0x25) Card Memory Map 2 Offset Address High = 0x00
+  (0x26) ATA Control = 0x00
+  (0x28) System Memory Map 3 Start Address Low = 0x00
+  (0x29) System Memory Map 3 Start Address High = 0x00
+  (0x2A) System Memory Map 3 End Address Low = 0x00
+  (0x2B) System Memory Map 3 End Address High = 0x00
+  (0x08 EXT) System Memory Map 3 Upper Address = 0x40
+  (0x2C) Card Memory Map 3 Offset Address Low = 0x00
+  (0x2D) Card Memory Map 3 Offset Address High = 0x00
+  (0x30) System Memory Map 4 Start Address Low = 0x00
+  (0x31) System Memory Map 4 Start Address High = 0x80
+  (0x32) System Memory Map 4 End Address Low = 0xFF
+  (0x33) System Memory Map 4 End Address High = 0x00
+  (0x09 EXT) System Memory Map 4 Upper Address = 0x40
+  (0x34) Card Memory Map 4 Offset Address Low = 0x00
+  (0x35) Card Memory Map 4 Offset Address High = 0x40
+  (0x36) Card I/O Map 0 Offset Address Low = 0x00
+  (0x37) Card I/O Map 0 Offset Address High = 0x00
+  (0x38) Card I/O Map 1 Offset Address Low = 0x00
+  (0x39) Card I/O Map 1 Offset Address High = 0x00
+  (0x3A) Setup Timing 0 = 0x04
+  (0x3B) Command Timing 0 = 0x0A
+  (0x3C) Recovery Timing 0 = 0x04
+  (0x3D) Setup Timing 1 = 0x20
+  (0x3E) Command Timing 1 = 0x48
+  (0x3F) Recovery Timing 1 = 0x20
+  (0x03 EXT) Extension Control 1 = 0x40
+  (0x0B EXT) Extension Control 2 = 0x40
+
+ Socket 1:
+  (0x41) Interface Status = 0x80
+  (0x42) Power Control = 0x90
+  (0x43) Interrupt and General Control = 0x40
+  (0x44) Card Status Change = 0x00
+  (0x45) Management Interrupt Configuration = 0x38
+  (0x46) Mapping Enable = 0x11
+  (0x47) I/O Window Control = 0x00
+  (0x48) System I/O Map 0 Start Address Low = 0x00
+  (0x49) System I/O Map 0 Start Address High = 0x00
+  (0x4A) System I/O Map 0 End Address Low = 0x00
+  (0x4B) System I/O Map 0 End Address High = 0x00
+  (0x4C) System I/O Map 1 Start Address Low = 0x00
+  (0x4D) System I/O Map 1 Start Address High = 0x00
+  (0x4E) System I/O Map 1 End Address Low = 0x00
+  (0x4F) System I/O Map 1 End Address High = 0x00
+  (0x50) System Memory Map 0 Start Address Low = 0x00
+  (0x51) System Memory Map 0 Start Address High = 0x81
+  (0x52) System Memory Map 0 End Address Low = 0xFF
+  (0x53) System Memory Map 0 End Address High = 0x04
+  (0x05 EXT) System Memory Map 0 Upper Address = 0x44
+  (0x54) Card Memory Map 0 Offset Address Low = 0x00
+  (0x55) Card Memory Map 0 Offset Address High = 0x3F
+  (0x56) Misc Control 1 = 0x00
+  (0x66) ATA Control = 0x00
+  (0x57) FIFO Control = 0x80
+  (0x58) System Memory Map 1 Start Address Low = 0x00
+  (0x59) System Memory Map 1 Start Address High = 0x00
+  (0x5A) System Memory Map 1 End Address Low = 0x00
+  (0x5B) System Memory Map 1 End Address High = 0x00
+  (0x06 EXT) System Memory Map 1 Upper Address = 0x44
+  (0x5C) Card Memory Map 1 Offset Address Low = 0x00
+  (0x5D) Card Memory Map 1 Offset Address High = 0x00
+  (0x60) System Memory Map 2 Start Address Low = 0x00
+  (0x61) System Memory Map 2 Start Address High = 0x00
+  (0x62) System Memory Map 2 End Address Low = 0x00
+  (0x63) System Memory Map 2 End Address High = 0x00
+  (0x07 EXT) System Memory Map 2 Upper Address = 0x44
+  (0x64) Card Memory Map 2 Offset Address Low = 0x00
+  (0x65) Card Memory Map 2 Offset Address High = 0x00
+  (0x66) ATA Control = 0x00
+  (0x68) System Memory Map 3 Start Address Low = 0x00
+  (0x69) System Memory Map 3 Start Address High = 0x00
+  (0x6A) System Memory Map 3 End Address Low = 0x00
+  (0x6B) System Memory Map 3 End Address High = 0x00
+  (0x08 EXT) System Memory Map 3 Upper Address = 0x44
+  (0x6C) Card Memory Map 3 Offset Address Low = 0x00
+  (0x6D) Card Memory Map 3 Offset Address High = 0x00
+  (0x70) System Memory Map 4 Start Address Low = 0x00
+  (0x71) System Memory Map 4 Start Address High = 0x80
+  (0x72) System Memory Map 4 End Address Low = 0xFF
+  (0x73) System Memory Map 4 End Address High = 0x00
+  (0x09 EXT) System Memory Map 4 Upper Address = 0x44
+  (0x74) Card Memory Map 4 Offset Address Low = 0x00
+  (0x75) Card Memory Map 4 Offset Address High = 0x40
+  (0x76) Card I/O Map 0 Offset Address Low = 0x00
+  (0x77) Card I/O Map 0 Offset Address High = 0x00
+  (0x78) Card I/O Map 1 Offset Address Low = 0x00
+  (0x79) Card I/O Map 1 Offset Address High = 0x00
+  (0x7A) Setup Timing 0 = 0x04
+  (0x7B) Command Timing 0 = 0x0A
+  (0x7C) Recovery Timing 0 = 0x04
+  (0x7D) Setup Timing 1 = 0x20
+  (0x7E) Command Timing 1 = 0x48
+  (0x7F) Recovery Timing 1 = 0x20
+  (0x03 EXT) Extension Control 1 = 0x44
+  (0x0B EXT) Extension Control 2 = 0x44
+
+
+------------------ show pci controller ------------------
+
+
+GT64120 Channel 0 DMA (Packet coalescing DMA engine):
+ dma_list=0x667F4030, dma_ring=0xE187040, dma_entries=256
+ dma_free=0x667F49E0, dma_reqt=0x667F49E0, dma_done=0x667F49E0
+ thread=0x667F49CC, thread_end=0x667F49CC
+ backup_thread=0x0, backup_thread_end=0x0
+ dma_working=0, dma_stalls=0, dma_stall_loop=0
+ dma_complete=751, post_coalesce_frames=751
+ exhausted_dma_entries=0, post_dma_callback=702
+
+GT64120 Rev level     : 5
+GT64120 Register Dump : Registers at 0xB4000000
+CPU Interface :
+ cpu_interface_conf   : 0x00000000 (b/s 0x00000000)
+ multi_gt             : 0x00000000 (b/s 0x00000000)
+Processor Address Space :
+ ras10_low            : 0x00000000 (b/s 0x00000000)
+ ras10_high           : 0x7F000000 (b/s 0x0000007F)
+ ras32_low            : 0x00010000 (b/s 0x00000100)
+ ras32_high           : 0x7F000000 (b/s 0x0000007F)
+ cs20_low             : 0x00000000 (b/s 0x00000000)
+ cs20_high            : 0x00000000 (b/s 0x00000000)
+ cs3_boot_low         : 0x00000000 (b/s 0x00000000)
+ cs3_boot_high        : 0x00000000 (b/s 0x00000000)
+ pci_io_low           : 0x00000000 (b/s 0x00000000)
+ pci_io_high          : 0x00000000 (b/s 0x00000000)
+ pci_mem_low          : 0x00000000 (b/s 0x00000000)
+ pci_mem_high         : 0x00000000 (b/s 0x00000000)
+ pci_mem1_low         : 0x00000000 (b/s 0x00000000)
+ pci_mem1_high        : 0x00000000 (b/s 0x00000000)
+ pci1_io_low          : 0x00000000 (b/s 0x00000000)
+ pci1_io_high         : 0x00000000 (b/s 0x00000000)
+ pci1_mem0_low        : 0x00000000 (b/s 0x00000000)
+ pci1_mem0_high       : 0x00000000 (b/s 0x00000000)
+ pci1_mem1_low        : 0x00000000 (b/s 0x00000000)
+ pci1_mem1_high       : 0x00000000 (b/s 0x00000000)
+ internal_spc_decode  : 0x00000000 (b/s 0x00000000)
+ bus_err_low          : 0x00000000 (b/s 0x00000000)
+ bus_err_high         : 0x00000000 (b/s 0x00000000)
+ pci0_sync_barrier    : 0x00000000 (b/s 0x00000000)
+ pci1_sync_barrier    : 0x00000000 (b/s 0x00000000)
+ ras10_addr_remap     : 0x00000000 (b/s 0x00000000)
+ ras32_addr_remap     : 0x00000000 (b/s 0x00000000)
+ cs20_remap           : 0x00000000 (b/s 0x00000000)
+ cs3_boot_remap       : 0x00000000 (b/s 0x00000000)
+ pci0_io_remap        : 0x00000000 (b/s 0x00000000)
+ pci0_mem0_remap      : 0x00000000 (b/s 0x00000000)
+ pci0_mem1_remap      : 0x00000000 (b/s 0x00000000)
+ pci1_io_remap        : 0x00000000 (b/s 0x00000000)
+ pci1_mem0_remap      : 0x00000000 (b/s 0x00000000)
+ pci1_mem1_remap      : 0x00000000 (b/s 0x00000000)
+SDRAM/Device Address Space :
+ ras0_low             : 0x00000000 (b/s 0x00000000)
+ ras0_high            : 0xFF000000 (b/s 0x000000FF)
+ ras1_low             : 0x7F000000 (b/s 0x0000007F)
+ ras1_high            : 0x00000000 (b/s 0x00000000)
+ ras2_low             : 0x00000000 (b/s 0x00000000)
+ ras2_high            : 0xFF000000 (b/s 0x000000FF)
+ ras3_low             : 0x7F000000 (b/s 0x0000007F)
+ ras3_high            : 0x00000000 (b/s 0x00000000)
+ cs0_low              : 0x00000000 (b/s 0x00000000)
+ cs0_high             : 0x00000000 (b/s 0x00000000)
+ cs1_low              : 0x00000000 (b/s 0x00000000)
+ cs1_high             : 0x00000000 (b/s 0x00000000)
+ cs2_low              : 0x00000000 (b/s 0x00000000)
+ cs2_high             : 0x00000000 (b/s 0x00000000)
+ cs3_low              : 0x00000000 (b/s 0x00000000)
+ cs3_high             : 0x00000000 (b/s 0x00000000)
+ boot_cs_low          : 0x00000000 (b/s 0x00000000)
+ boot_cs_high         : 0x00000000 (b/s 0x00000000)
+ addr_decode_err      : 0x00000000 (b/s 0x00000000)
+ addr_decode          : 0x00000000 (b/s 0x00000000)
+ dram_config          : 0x00000000 (b/s 0x00000000)
+ dram_bank0_param     : 0x00000000 (b/s 0x00000000)
+ dram_bank1_param     : 0x00000000 (b/s 0x00000000)
+ dram_bank2_param     : 0x00000000 (b/s 0x00000000)
+ dram_bank3_param     : 0x00000000 (b/s 0x00000000)
+ dram_oper_mode       : 0x00000000 (b/s 0x00000000)
+Device Parameters :
+ device_bank0_param   : 0x00000000 (b/s 0x00000000)
+ device_bank1_param   : 0x00000000 (b/s 0x00000000)
+ device_bank2_param   : 0x00000000 (b/s 0x00000000)
+ device_bank3_param   : 0x00000000 (b/s 0x00000000)
+ boot_bank_param      : 0x00000000 (b/s 0x00000000)
+DMA Channels :
+ ch0_dma_count        : 0x00000000 (b/s 0x00000000)
+ ch1_dma_count        : 0x00000000 (b/s 0x00000000)
+ ch2_dma_count        : 0x00000000 (b/s 0x00000000)
+ ch3_dma_count        : 0x00000000 (b/s 0x00000000)
+ ch0_dma_src          : 0xE0A1190E (b/s 0x0E19A1E0)
+ ch1_dma_src          : 0x00000000 (b/s 0x00000000)
+ ch2_dma_src          : 0x00000000 (b/s 0x00000000)
+ ch3_dma_src          : 0x00000000 (b/s 0x00000000)
+ ch0_dma_dst          : 0x82B5000E (b/s 0x0E00B582)
+ ch1_dma_dst          : 0x00000000 (b/s 0x00000000)
+ ch2_dma_dst          : 0x00000000 (b/s 0x00000000)
+ ch3_dma_dst          : 0x00000000 (b/s 0x00000000)
+ ch0_next_ptr         : 0x00000000 (b/s 0x00000000)
+ ch1_next_ptr         : 0x00000000 (b/s 0x00000000)
+ ch2_next_ptr         : 0x00000000 (b/s 0x00000000)
+ ch3_next_ptr         : 0x00000000 (b/s 0x00000000)
+ ch0_current_ptr      : 0x00000000 (b/s 0x00000000)
+ ch1_current_ptr      : 0x00000000 (b/s 0x00000000)
+ ch2_current_ptr      : 0x00000000 (b/s 0x00000000)
+ ch3_current_ptr      : 0x00000000 (b/s 0x00000000)
+ ch0_ctrl             : 0xC01C0000 (b/s 0x00001CC0)
+ ch1_ctrl             : 0x00000000 (b/s 0x00000000)
+ ch2_ctrl             : 0x00000000 (b/s 0x00000000)
+ ch3_ctrl             : 0x00000000 (b/s 0x00000000)
+ arbiter_ctrl         : 0x00000000 (b/s 0x00000000)
+Timer/Counters :
+ ct0                  : 0x00000000 (b/s 0x00000000)
+ ct1                  : 0x00000000 (b/s 0x00000000)
+ ct2                  : 0x00000000 (b/s 0x00000000)
+ ct3                  : 0x00000000 (b/s 0x00000000)
+ counter_ctrl         : 0x00000000 (b/s 0x00000000)
+PCI Internal Registers :
+ pci_cmd              : 0x01800000 (b/s 0x00008001)
+ pci1_cmd             : 0x00000000 (b/s 0x00000000)
+ pci_timeout          : 0x00000000 (b/s 0x00000000)
+ pci1_timeout         : 0x00000000 (b/s 0x00000000)
+ pci_ras10_size       : 0xFF0F0000 (b/s 0x00000FFF)
+ pci1_ras10_size      : 0x00000000 (b/s 0x00000000)
+ pci_ras32_size       : 0xFF0F0000 (b/s 0x00000FFF)
+ pci1_ras32_size      : 0x00000000 (b/s 0x00000000)
+ pci_cs20_size        : 0x00000000 (b/s 0x00000000)
+ pci1_cs20_size       : 0x00000000 (b/s 0x00000000)
+ pci_cs3_boot_size    : 0x00000000 (b/s 0x00000000)
+ pci1_cs3_boot_size   : 0x00000000 (b/s 0x00000000)
+ pci0_prefetch_burst_ : 0x00000000 (b/s 0x00000000)
+ pci1_prefetch_burst_ : 0x00000000 (b/s 0x00000000)
+ pci0_ras10_remap     : 0x00000000 (b/s 0x00000000)
+ pci1_ras10_remap     : 0x00000000 (b/s 0x00000000)
+ pci0_ras32_remap     : 0x00000000 (b/s 0x00000000)
+ pci1_ras32_remap     : 0x00000000 (b/s 0x00000000)
+ pci0_cs20_remap      : 0x00000000 (b/s 0x00000000)
+ pci1_cs20_remap      : 0x00000000 (b/s 0x00000000)
+ pci0_cs3_boot_remap  : 0x00000000 (b/s 0x00000000)
+ pci1_cs3_boot_remap  : 0x00000000 (b/s 0x00000000)
+ pci0_swapped_ras10_r : 0x00000000 (b/s 0x00000000)
+ pci1_swapped_ras10_r : 0x00000000 (b/s 0x00000000)
+ pci0_swapped_ras32_r : 0x00000000 (b/s 0x00000000)
+ pci1_swapped_ras32_r : 0x00000000 (b/s 0x00000000)
+ pci0_swapped_cs3_boo : 0x00000000 (b/s 0x00000000)
+ pci1_swapped_cs3_boo : 0x00000000 (b/s 0x00000000)
+ pci0_base_addr_regs_ : 0x00000000 (b/s 0x00000000)
+Interrupt Control :
+ pci_int_cause        : 0x00000000 (b/s 0x00000000)
+ pci_high_int_cause   : 0x00000000 (b/s 0x00000000)
+ pci_cpu_mask         : 0xF00F0000 (b/s 0x00000FF0)
+ pci_high_cpu_mask    : 0x00000000 (b/s 0x00000000)
+ pci_pci_mask         : 0x00000000 (b/s 0x00000000)
+ pci0_high_pci_mask   : 0x00000000 (b/s 0x00000000)
+ pci1_int_cause_mask  : 0x00000000 (b/s 0x00000000)
+ pci1_high_int_cause_ : 0x00000000 (b/s 0x00000000)
+ pci_serr_mask        : 0x00000000 (b/s 0x00000000)
+ pci1_serr_mask       : 0x00000000 (b/s 0x00000000)
+ pci0_int_select      : 0x00000000 (b/s 0x00000000)
+ pci1_int_select      : 0x00000000 (b/s 0x00000000)
+ cpu_int_select       : 0x00000000 (b/s 0x00000000)
+
+
+------------------ show sysctlr ------------------
+
+
+
+------------------ show buffers ------------------
+
+
+Buffer elements:
+     1104 in free list 
+     56045 hits, 0 misses, 617 created
+
+Public buffer pools:
+Small buffers, 104 bytes (total 50, permanent 50):
+     46 in free list (20 min, 150 max allowed)
+     13142 hits, 0 misses, 0 trims, 0 created
+     0 failures (0 no memory)
+Middle buffers, 600 bytes (total 43, permanent 25, peak 43 @ 01:48:25):
+     37 in free list (10 min, 150 max allowed)
+     16115 hits, 6 misses, 0 trims, 18 created
+     0 failures (0 no memory)
+Big buffers, 1536 bytes (total 51, permanent 50, peak 51 @ 01:48:31):
+     51 in free list (5 min, 150 max allowed)
+     2033 hits, 0 misses, 0 trims, 1 created
+     0 failures (0 no memory)
+VeryBig buffers, 4520 bytes (total 11, permanent 10, peak 11 @ 01:48:31):
+     11 in free list (0 min, 100 max allowed)
+     0 hits, 0 misses, 0 trims, 1 created
+     0 failures (0 no memory)
+Large buffers, 5024 bytes (total 1, permanent 0, peak 1 @ 01:48:37):
+     1 in free list (0 min, 10 max allowed)
+     0 hits, 0 misses, 0 trims, 1 created
+     0 failures (0 no memory)
+Huge buffers, 18024 bytes (total 1, permanent 0, peak 1 @ 01:48:37):
+     1 in free list (0 min, 4 max allowed)
+     0 hits, 0 misses, 0 trims, 1 created
+     0 failures (0 no memory)
+
+Interface buffer pools:
+Generic ED Pool buffers, 512 bytes (total 101, permanent 100, peak 101 @ 01:48:27):
+     101 in free list (100 min, 100 max allowed)
+     2 hits, 0 misses
+Syslog ED Pool buffers, 600 bytes (total 133, permanent 132, peak 133 @ 01:48:27):
+     101 in free list (132 min, 132 max allowed)
+     220 hits, 0 misses
+IPC buffers, 4096 bytes (total 2, permanent 2):
+     1 in free list (1 min, 8 max allowed)
+     1 hits, 0 fallbacks, 0 trims, 0 created
+     0 failures (0 no memory)
+IPC Medium buffers, 16384 bytes (total 2, permanent 2):
+     2 in free list (1 min, 8 max allowed)
+     0 hits, 0 fallbacks, 0 trims, 0 created
+     0 failures (0 no memory)
+IPC Large buffers, 65535 bytes (total 17, permanent 16, peak 17 @ 01:48:37):
+     17 in free list (16 min, 16 max allowed)
+     0 hits, 0 misses, 108 trims, 109 created
+     0 failures (0 no memory)
+
+Header pools:
+Header buffers, 0 bytes (total 512, permanent 256, peak 512 @ 01:48:36):
+     256 in free list (256 min, 1024 max allowed)
+     171 hits, 85 misses, 0 trims, 256 created
+     0 failures (0 no memory)
+     256 max cache size, 256 in cache
+     0 hits in cache, 0 misses in cache
+
+Particle Clones:
+     1024 clones, 0 hits, 0 misses
+
+Public particle pools:
+F/S buffers, 128 bytes (total 512, permanent 512):
+     0 in free list (0 min, 512 max allowed)
+     512 hits, 0 misses, 0 trims, 0 created
+     0 failures (0 no memory)
+     512 max cache size, 512 in cache
+     0 hits in cache, 0 misses in cache
+Normal buffers, 512 bytes (total 2048, permanent 2048):
+     2048 in free list (1024 min, 4096 max allowed)
+     0 hits, 0 misses, 0 trims, 0 created
+     0 failures (0 no memory)
+
+Private particle pools:
+HQF Particle buffers, 0 bytes (total 2000, permanent 2000):
+     2000 in free list (500 min, 2000 max allowed)
+     0 hits, 0 misses, 0 trims, 0 created
+     0 failures (0 no memory)
+FastEthernet0/0 buffers, 512 bytes (total 400, permanent 400):
+     0 in free list (0 min, 400 max allowed)
+     400 hits, 0 fallbacks
+     400 max cache size, 271 in cache
+     16613 hits in cache, 0 misses in cache
+     14 buffer threshold, 0 threshold transitions
+FastEthernet1/0 buffers, 512 bytes (total 400, permanent 400):
+     0 in free list (0 min, 400 max allowed)
+     400 hits, 0 fallbacks
+     400 max cache size, 271 in cache
+     129 hits in cache, 0 misses in cache
+     14 buffer threshold, 0 threshold transitions
+
+
+
+------------------ show buffers usage ------------------
+
+
+Statistics for the Small pool
+Input IDB    :      Fa0/0 count:        6
+Caller pc    : 0x62CC2180 count:        8
+Resource User:   IP Input count:        8
+Number of Buffers used by packets generated by system:   42
+Number of Buffers used by incoming packets:               8
+
+Statistics for the Middle pool
+Caller pc    : 0x60F30C28 count:       13
+Resource User: Virtual Ex count:       13
+Output IDB   :      Fa0/0 count:       12
+Number of Buffers used by packets generated by system:   43
+Number of Buffers used by incoming packets:               0
+
+Statistics for the Big pool
+Number of Buffers used by packets generated by system:   51
+Number of Buffers used by incoming packets:               0
+
+Statistics for the VeryBig pool
+Number of Buffers used by packets generated by system:   11
+Number of Buffers used by incoming packets:               0
+
+Statistics for the Large pool
+Number of Buffers used by packets generated by system:    1
+Number of Buffers used by incoming packets:               0
+
+Statistics for the Huge pool
+Number of Buffers used by packets generated by system:    1
+Number of Buffers used by incoming packets:               0
+
+Statistics for the Generic ED Pool pool
+Number of Buffers used by packets generated by system:  101
+Number of Buffers used by incoming packets:               0
+
+Statistics for the Syslog ED Pool pool
+Caller pc    : 0x60869E4C count:       32
+Resource User: EEM ED Sys count:       32
+Number of Buffers used by packets generated by system:  133
+Number of Buffers used by incoming packets:               0
+
+Statistics for the IPC pool
+Caller pc    : 0x62B99048 count:        1
+Resource User:       Init count:        1
+Number of Buffers used by packets generated by system:    2
+Number of Buffers used by incoming packets:               0
+
+Statistics for the IPC Medium pool
+Number of Buffers used by packets generated by system:    2
+Number of Buffers used by incoming packets:               0
+
+Statistics for the IPC Large pool
+Number of Buffers used by packets generated by system:   17
+Number of Buffers used by incoming packets:               0
+
+Statistics for the Header pool
+Number of Buffers used by packets generated by system:  512
+Number of Buffers used by incoming packets:               0
+
+Statistics for the FS Header pool
+Caller pc    : 0x62E4D3C0 count:        2
+Resource User:       Init count:       17
+Caller pc    : 0x61231678 count:        1
+Caller pc    : 0x60982398 count:        1
+Caller pc    : 0x63337A78 count:        1
+Caller pc    : 0x633380B4 count:        1
+Caller pc    : 0x620CE954 count:        8
+Caller pc    : 0x62B0570C count:        1
+Caller pc    : 0x63270364 count:        1
+Caller pc    : 0x63337A38 count:        1
+Number of Buffers used by packets generated by system:   33
+Number of Buffers used by incoming packets:               0
+
+Statistics for the l2frag pak pool pool
+Number of Buffers used by packets generated by system:    0
+Number of Buffers used by incoming packets:               0
+
+Statistics for the SW Crypto Header pool
+Caller pc    : 0x629FCC8C count:        1
+Resource User:       Init count:        1
+Number of Buffers used by packets generated by system:    2
+Number of Buffers used by incoming packets:               0
+
+Statistics for the Crypto Fragmentation Header pool
+Caller pc    : 0x63672E1C count:        1
+Resource User:       Init count:        1
+Number of Buffers used by packets generated by system:    2
+Number of Buffers used by incoming packets:               0
+
+
+
+R3#exit
+show ip interface
+FastEthernet0/0 is up, line protocol is up
+  Internet address is 192.168.0.179/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Outgoing access list is not set
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF switching turbo vector
+  IP CEF turbo switching turbo vector
+  Associated unicast routing topologies:
+        Topology "base", operation state is UP
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+  IP route-cache flags are Fast, CEF
+  Router Discovery is disabled
+  IP output packet accounting is disabled
+  IP access violation accounting is disabled
+  TCP/IP header compression is disabled
+  RTP/IP header compression is disabled
+  Probe proxy name replies are disabled
+  Policy routing is disabled
+  Network address translation is disabled
+  BGP Policy Mapping is disabled
+  Input features: MCI Check
+  WCCP Redirect outbound is disabled
+  WCCP Redirect inbound is disabled
+  WCCP Redirect exclude is disabled
+FastEthernet1/0 is administratively down, line protocol is down
+  Internet protocol processing disabled
+R3#exit

@@ -1,0 +1,4 @@
+show conf
+show ip int brief
+show tech
+show ip interface

@@ -1,5 +1,4 @@
-import sys,re,time
-import telnetlib
+import telnetlib,time
 
 
 def lexo(shtegu):

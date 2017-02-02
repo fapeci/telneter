@@ -1,50 +1,43 @@
 import telnetlib,time
 
 
-def lexo(shtegu):
-    with open(shtegu) as f:
+def readfile(path):
+    with open(path) as f:
         hosts = f.readlines()
     hosts = [x.strip() for x in hosts]
     f.close()
     return hosts
 
-kredencialet = lexo('creds.txt')
-hostat = lexo('hosts.txt')
-komandat = lexo('commands.txt')
+credentials = readfile('creds.txt')
+hosts = readfile('hosts.txt')
+commands = readfile('commands.txt')
 
-for host in hostat:
+for host in hosts:
     f = open('precheck_' + host + '.txt', 'w')
-    for komand in komandat:
+    for command in commands:
         tn = telnetlib.Telnet(host, timeout=10)
         tn.set_debuglevel(0)
+        password = credentials[0]
+
+        # EXEC Mode Prepping for IOS command execution
         tn.read_until("Password:")
-        tn.write(kredencialet[0] + "\n")
-        # EXEC Mode Prepping for command execution
+        tn.write(password + "\n")
         tn.write("enable\n")
         tn.read_until("Password:")
-        tn.write(kredencialet[0] + "\n")
+        tn.write(password + "\n")
         tn.read_until("#")
         tn.write('terminal length 0' + "\n")
         tn.read_until("#")
 
         # Command Execution
-        #for komand in komandat:
-        tn.write(komand + "\n")
+        tn.write(command + "\n")
         time.sleep(3)
         tn.write('exit' + "\n")
-
         try:
             f.write(tn.read_all())
         except:
             tn.close()
-
-        #tn.expect([re.compile("\w+#"),])
-        #tn.write('exit' + "\n")
-        print 'Start writing precheck for '+komand+' ... ' + host + ' to file'
-
-        #print tn.read_all()
-
+        print 'Start writing precheck for '+command+' ... '  + ' to file precheck_'+ host + '.txt'
         tn.close()
-        #print tn.read_all()
     f.close()
 print '\n Finished ...'
